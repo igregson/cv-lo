@@ -1,0 +1,28 @@
+// INDEX OF ANIMATIONS
+// This is a port of Den Eden's Animate.css, converted for SASS.
+// Source: https://daneden.me/animate/
+//
+// @import this index into your project.
+// Comment out categories below to remove them from your project.
+// Or, @import specific partials (e.g. @import "_attention/_bounce.scss";
+//
+//-----------------------------------------------------------------------
+
+// Always required
+@import "_properties";
+
+// Import the animations
+// @import "_attention-seekers/attention-seekers";
+// @import "_bouncing-entrances/bouncing-entrances";
+// @import "_bouncing-exits/bouncing-exits";
+@import "_fading-entrances/fading-entrances";
+// @import "_fading-exits/fading-exits";
+// @import "_flippers/flippers";
+// @import "_lightspeed/lightspeed";
+// @import "_rotating-entrances/rotating-entrances";
+// @import "_rotating-exits/rotating-exits";
+// @import "_sliding-entrances/sliding-entrances";
+// @import "_sliding-exits/sliding-exits";
+// @import "_specials/specials";
+// @import "_zooming-entrances/zooming-entrances";
+// @import "_zooming-exits/zooming-exits";

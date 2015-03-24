@@ -1,0 +1,51 @@
+.uppercase
+  text-transform: uppercase
+.lowercase
+  text-transform: none
+.titlecase
+  text-transform: capitalize
+
+.outline, %outline
+  border: solid 1px $c-tan
+  padding: 5px
+
+.font-family--heading
+  font-family: $font-family-heading
+%no-select, .no-select
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  -o-user-select: none
+  user-select: none
+
+.clearfix:after
+  content: ""
+  display: table
+  clear: both
+
+.disable-events
+  pointer-events: none
+  cursor: default
+  &:hover
+    color: inherit
+    border: none
+    cursor: default
+.disable-events-pseudo
+  pointer-events: none
+  &:hover
+    border: none
+
+.center, .text-center 
+  text-align: center
+.italic
+  font-style: italic
+
+// toggleable classes for scripts
+.displayNone
+  display: none !important
+.visibilityHidden
+  visibility: hidden !important
+.hidden
+  display: none
+.visible
+  display: inherit

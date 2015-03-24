@@ -1,0 +1,14 @@
+$content-padding-lg: 30px
+$content-padding-sm: 15px
+
+.pad--content
+  padding: $content-padding-sm $content-padding-sm*2 $content-padding-sm*2
+  @include bp(820px)
+    padding: $content-padding-lg $content-padding-lg*2 $content-padding-lg*2
+
+.pad--content--sides
+  padding-left: $content-padding-sm*2
+  padding-right: $content-padding-sm*2
+  @include bp(820px)
+    padding-left: $content-padding-lg*2 
+    padding-right: $content-padding-lg*2 

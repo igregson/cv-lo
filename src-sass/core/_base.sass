@@ -1,0 +1,59 @@
+// spacing
+$space--owl: 1.25em
+$width-contain: 700px
+
+$height--header: 75px
+
+$container-padding: 25px
+$container-space-top: $container-padding 
+$container-space-side: $container-padding
+$container-space-btm: $container-padding
+
+$nav-header-bar--height: 50px
+
+// Break Points 
+$bp-navOff: 750px
+
+// c-generics
+$c-white:   #FEFEFE
+$c-black:   #333333
+$c-gray:    #F8F7F3
+$c-tan:     #DFDED9
+$c-green:   #91B382
+$c-orange:  #f5a93a
+$c-red:     #F0342B
+$c-blue:    #063E4D
+// c-specics
+$c-bg:      $c-blue 
+$c-box-bg:  $c-white
+$c--e-nav: #bbb
+$c--e-nav-hov: darken(#565656, 37)
+$c--e-nav-off: lighten(#bbb, 17)
+
+// other
+$radius: 2px
+
+html
+  background-color: $c-bg
+  height: 100%
+  width: 100
+
+body 
+  position: relative
+  height: 100%
+  width: 100%
+
+.contain 
+  position: absolute 
+  top: 50%
+  transform: translateY(-50%)
+  margin: 0 auto
+  left: 0
+  right: 0
+  padding: 2rem
+  max-width: $width-contain
+  * + *
+    margin-top: $space--owl
+    @include bpMax(650px)
+      margin-top: 1em
+

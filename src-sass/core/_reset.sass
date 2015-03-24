@@ -1,0 +1,89 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video
+  padding: 0
+  margin: 0
+  font-size: 100%
+  vertical-align: baseline
+  border: 0
+
+*, *:after, *:before 
+  box-sizing: border-box
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section
+  display: block
+
+html
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-rendering: auto
+  -webkit-text-size-adjust: 100%
+
+ol, ul 
+  list-style: none
+
+blockquote, q 
+  quotes: none
+
+blockquote:before, blockquote:after, q:before, q:after
+  content: ''
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+// ----------------------------------------------
+// ClearFix
+
+.clearfix:before,
+.clearfix:after 
+  display: table
+  line-height: 0
+  content: ""
+
+.clearfix:after 
+  clear: both
+
+body > .clearfix 
+  zoom: 1
+
+// ----------------------------------------------
+// Media - Fluid Images - Video
+
+figure 
+  margin: 0
+
+img,
+object,
+embed,
+video 
+  max-width: 100%
+
+body > img,
+object,
+embed,
+video 
+  width: 100%
+
+// Fluid images
+
+img 
+  height: auto
+  vertical-align: middle
+  border: 0
+  -ms-interpolation-mode: bicubic
+
+// Correct IE9 overflow
+
+svg:not(:root) 
+  overflow: hidden
+
+// Avoid Google maps breaking with max-width 100%
+
+img[src*="maps.gstatic.com"],
+img[src*="googleapis.com"] 
+  max-width: none
+
+// ----------------------------------------------
+// Links (No outline borders)
+
+a:focus 
+  outline: 0

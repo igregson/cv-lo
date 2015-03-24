@@ -1,0 +1,76 @@
+// --------------------
+// On-the-fly
+
+@mixin bp($point) {
+  @media screen and (min-width: $point) {
+    @content
+  }
+}
+@mixin bpMax($point) {
+  @media screen and (max-width: $point) {
+    @content
+  }
+}
+
+
+
+// --------------------
+// Pre-Defined
+
+$bp-small:    20em;
+$bp-small-2:  29.75em;
+$bp-small-3:  39.8em;
+$bp-med:      46.8em;
+$bp-med-2:    48em;
+$bp-large:    50em;
+$bp-large-2:  54.5em;
+$bp-xl:       60em;
+$bp-xl-2:     67em;
+
+@mixin break($point) {
+  @if $point == small {
+    @media screen and (min-width: $bp-small) {
+      @content;
+    }
+  }
+  @else if $point == small-2 {
+    @media screen and (min-width: $bp-small-2) {
+      @content;
+    }
+  }
+  @else if $point == small-3 {
+    @media screen and (min-width: $bp-small-3)  {
+      @content;
+    }
+  }
+  @else if $point == med {
+    @media screen and (min-width: $bp-med)  {
+      @content;
+    }
+  }
+  @else if $point == med-2 {
+    @media screen and (min-width: $bp-med-2)  {
+      @content;
+    }
+  }
+  @else if $point == large {
+    @media screen and (min-width: $bp-large)  {
+      @content;
+    }
+  }
+  @else if $point == large-2 {
+    @media screen and (min-width: $bp-large-2)  {
+      @content;
+    }
+  }
+  @else if $point == xl {
+    @media screen and (min-width: $bp-xl)  {
+      @content;
+    }
+  }
+  @else if $point == xl-2 {
+    @media screen and (min-width: $bp-xl-2)  {
+      @content;
+    }
+  }
+}
