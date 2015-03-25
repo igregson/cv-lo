@@ -21097,6 +21097,7 @@ module.exports = React.createClass ({displayName: "exports",
     // capture the current component before the request
     var currentComponent = this
 
+    // make request
     request 
     .get(url)
     .end(function(err, data) {
@@ -21111,7 +21112,6 @@ module.exports = React.createClass ({displayName: "exports",
         // on success, update appropriate states
         currentComponent.setState({ trelloStatus : "connected" })
         currentComponent.props.setData(data)
-        currentComponent.props.sayHello("hello")
       }
     })
   },
@@ -21164,17 +21164,19 @@ var BtnNextStep = require('./BtnNextStep')
 var Errors = require('./StepAuth_errors')
 
 
+
 /* demo url: 
 https://trello.com/b/dldEmt0w/resume-example-for-cv-lo
 */
-
 
 module.exports = React.createClass({displayName: "exports",
 
   handleClick: function(e) {
     e.preventDefault() 
-    // somewhat working regex: https:\/\/trello.com\/b\/(.*?)\/
-    // going with string manipulation for now
+
+    // Isolate board id from user-submited url
+    // Send this url to parent component via props callback
+    // string manipulatin for now. half-there regex: https:\/\/trello.com\/b\/(.*?)\/
     var rawUrl = this.refs.boardUrl.getDOMNode().value
     this.props.sendRequest(rawUrl)
   },
@@ -21187,12 +21189,12 @@ module.exports = React.createClass({displayName: "exports",
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "1"), 
+          React.createElement("div", {className: "step--indicator"}, "2"), 
           React.createElement("p", {className: "step--message"}, "Connect to Trello Resume Board"), 
 
           React.createElement("div", {className: "step--body"}, 
             React.createElement("form", null, 
-              React.createElement("input", {className: "input--default", type: "text", placeholder: "Paste Trello Board URL Here", ref: "boardUrl", autoFocus: "true"}), 
+              React.createElement("input", {className: "input--default", type: "text", placeholder: "Paste Trello-board Public URL Here", ref: "boardUrl", autoFocus: "true"}), 
               React.createElement("br", null), 
               React.createElement("button", {className: "btn--default", onClick: this.handleClick}, "CONNECT TO BOARD")
             )
@@ -21222,18 +21224,15 @@ module.exports = React.createClass({displayName: "exports",
 
 
   render: function() {
-    // var boardName = this.props.data
-
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "1"), 
-          React.createElement("p", {className: "step--message"}, "Great!"), 
+          React.createElement("div", {className: "step--indicator"}, "•"), 
+          React.createElement("p", {className: "step--message"}, "Connected!"), 
 
           React.createElement("div", {className: "step--body"}, 
-            React.createElement("p", null, "Successfully connected."), 
-            React.createElement("p", null, "Head on to the next step...")
+            React.createElement("p", null, "Go to the next step for your Resume.")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
@@ -21241,7 +21240,6 @@ module.exports = React.createClass({displayName: "exports",
 
         )
       )     
-
     )
   }
 })
@@ -21323,7 +21321,7 @@ module.exports = React.createClass ({displayName: "exports",
   }
 })
 
-},{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepCreatingCv.js":[function(require,module,exports){
+},{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepCv.js":[function(require,module,exports){
 'use strict'
 var React = require('react')
 var BtnPrevStep = require('./BtnPrevStep')
@@ -21349,7 +21347,7 @@ module.exports = React.createClass ({displayName: "exports",
         style: 'sectionHeader'
       })
     }
-    // console.dir(lists)
+    console.dir(lists)
 
     // VALUES
     for (var i = 0; i < data.cards.length; i++) {
@@ -21357,9 +21355,9 @@ module.exports = React.createClass ({displayName: "exports",
 
       // nested array to add each card 
       // to its parent list
-      // TODO: figure out a better way to go
-      //       about this that doesn't need a 
-      //       nested loop
+      // TODO: consider a way to approach this 
+      //       without a nested loop, if there
+      //       is one
       for (var j = 0; j < lists.length; j++) {
         var list = lists[j]
         if (card.idList === list.id) {
@@ -21368,7 +21366,7 @@ module.exports = React.createClass ({displayName: "exports",
             style: 'subheader'
           })
           // if there's a description, add it to array
-          // just after the last one added, hence "j + 2"
+          // just after the last one added, hence "j + **2**"
           if ( card.desc ) {
             lists.splice(j + 2, 0, {
               text: card.desc,
@@ -21378,7 +21376,26 @@ module.exports = React.createClass ({displayName: "exports",
         }
       } // end nested loop
     } // end loop
+    // var cards = []
+    // for (var i = 0; i < data.cards.length; i++) {
+    //   var card = data.cards[i]
 
+    //   cards.push({
+    //     id: card.idList,
+    //     text: card.name,
+    //     style: 'subheader'
+    //   })
+    //   // if there's a description, add it 
+    //   if ( card.desc ) {
+    //     cards.push({
+    //       text: card.desc,
+    //       style: 'paragraph'
+    //     }) 
+    //   }
+    // } // end loop
+    // console.dir(cards)
+
+    // console.dir(lists)
     // var content = [
     //   {
     //     text: data.,
@@ -21388,8 +21405,6 @@ module.exports = React.createClass ({displayName: "exports",
 
     // content.splice(1, 0, lists)    
     var content = lists
-
-
 
     var docDefinition = {
 
@@ -21405,35 +21420,37 @@ module.exports = React.createClass ({displayName: "exports",
         sectionHeader: {
           fontSize: 19,
           bold: true,
+          marginTop: 7,
           marginBottom: 7
         },
         subheader: {
           fontSize: 12,
           bold: true,
+          marginTop: 4,
           marginBottom: 2
         },
         paragraph: {
           fontSize: 12,
+          marginTop: 1,
           marginBottom: 2
         }
       }
     }
 
-    console.log(docDefinition)
+    // console.log(content)
+    // console.log(docDefinition)
 
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
 
+          // <div className="step--indicator">3</div>
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--chooseBoard"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "2"), 
-          React.createElement("p", {className: "step--message"}, "Choose Style"), 
+          React.createElement("p", {className: "step--message"}, "Here you go :)"), 
 
           React.createElement("div", {className: "step--body"}, 
-            React.createElement("p", null, "Hold Tight..."), 
-            React.createElement("p", null, "Creating your CV..."), 
-            React.createElement("button", {className: "btn--default", onClick: pdfOpen}, "Open CV")
+            React.createElement("button", {className: "btn--default", onClick: pdfOpen}, "Open Resume")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
@@ -21445,7 +21462,45 @@ module.exports = React.createClass ({displayName: "exports",
   }
 })
 
-},{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepViewCv.js":[function(require,module,exports){
+},{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepEnd.js":[function(require,module,exports){
+'use strict'
+var React = require('react')
+var BtnPrevStep = require('./BtnPrevStep')
+
+
+
+module.exports = React.createClass ({displayName: "exports",
+  render: function() { 
+          // <div className="step--indicator">3</div>
+    return (
+      React.createElement("div", {className: "primary"}, 
+        React.createElement("div", {className: "step step--chooseBoard"}, 
+
+          React.createElement("p", {className: "step--message"}, "Thanks for using cv-Lo"), 
+
+          React.createElement("div", {className: "step--body"}, 
+            React.createElement("p", null, React.createElement("b", null, "SHARE: ", React.createElement("br", null), 
+              React.createElement("a", {className: "link--twitter", href: "#"}, "Twitter"), " / ", React.createElement("a", {className: "link--facebook", href: "#"}, "Facebook")
+            )), 
+            React.createElement("p", null, React.createElement("b", null, "CONNECT: ", React.createElement("br", null), 
+              React.createElement("a", {className: "link--twitter", href: "mailto:isaac@cv-lo.com"}, "Email"), " / ", React.createElement("a", {className: "link--twitter", href: "http://twitter.com/igregson"}, "Twitter")
+            )), 
+            React.createElement("p", null, React.createElement("b", null, "CONTRIBUTE: ", React.createElement("br", null), 
+              React.createElement("a", {className: "link--github", href: "https://github.com/igregson/cv-lo"}, "Github")
+            ))
+          ), 
+
+          React.createElement(BtnPrevStep, {prevStep: this.props.prevStep})
+
+        )
+      )
+    )
+  }
+})
+
+
+
+},{"./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepInstructions.js":[function(require,module,exports){
 'use strict'
 var React = require('react')
 var BtnPrevStep = require('./BtnPrevStep')
@@ -21457,13 +21512,25 @@ module.exports = React.createClass ({displayName: "exports",
   render: function() { 
     return (
       React.createElement("div", {className: "primary"}, 
-        React.createElement("div", {className: "step step--chooseBoard"}, 
+        React.createElement("div", {className: "step step--instructions"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "3"), 
-          React.createElement("p", {className: "step--message"}, "View/Print/Download Resume"), 
+          React.createElement("div", {className: "step--indicator"}, "1"), 
+          React.createElement("p", {className: "step--message"}, "Instructions"), 
 
           React.createElement("div", {className: "step--body"}, 
-            "Your resume is done!"
+            React.createElement("p", null, 
+              React.createElement("ul", null, 
+                React.createElement("li", null, "Create a Trello board"), 
+                React.createElement("li", null, "Each list on your board will become a section of your resume"), 
+                React.createElement("li", null, "Each list item (\"card\") will be a resume entry for that section"), 
+                React.createElement("li", null, "Add descriptions to list items (optional)"), 
+                React.createElement("li", null, "Create special \"bio\" list with cards tagged \"bio\" for the meta-aspects of your cv")
+              )
+            ), 
+            React.createElement("p", null, "TLDR:", React.createElement("br", null), 
+              "Learn by example...", React.createElement("br", null), 
+              React.createElement("a", {href: "https://trello.com/b/dldEmt0w/resume-example-for-cv-lo", target: "blank"}, "View/Use our sample resume board")
+            )
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
@@ -21482,9 +21549,10 @@ module.exports = React.createClass ({displayName: "exports",
 var React            = require('react')
 var Welcome          = require('./Welcome')
 var StepAuth         = require('./StepAuth')
+var StepInstructions = require('./StepInstructions')
 var StepChooseStyle  = require('./StepChooseStyle')
-var StepCreatingCv   = require('./StepCreatingCv')
-var StepViewCv       = require('./StepViewCv')
+var StepCv           = require('./StepCv')
+var StepEnd          = require('./StepEnd')
 
 
 
@@ -21509,10 +21577,6 @@ module.exports = React.createClass({displayName: "exports",
     })
   },
 
-  sayHello: function(sayHello) {
-    console.log('say ' + sayHello)
-  },
-
   setData: function(data) {
     console.log(data)
     this.setState({
@@ -21525,27 +21589,30 @@ module.exports = React.createClass({displayName: "exports",
 
       case 1: 
       return React.createElement(Welcome, {
+              nextStep: this.nextStep})
+      case 2:
+      return React.createElement(StepInstructions, {
               nextStep: this.nextStep, 
               prevStep: this.prevStep})
-      case 2: 
+
+      case 3: 
       return React.createElement(StepAuth, {
               nextStep: this.nextStep, 
               prevStep: this.prevStep, 
               setData: this.setData, 
-              sayHello: this.sayHello, 
               data: this.state.data})
-      case 3: 
-      return React.createElement(StepChooseStyle, {
-              nextStep: this.nextStep, 
-              prevStep: this.prevStep, 
-              data: this.state.data})
+      // case 3: 
+      // return <StepChooseStyle
+      //         nextStep={this.nextStep}
+      //         prevStep={this.prevStep} 
+      //         data={this.state.data} />
       case 4: 
-      return React.createElement(StepCreatingCv, {
+      return React.createElement(StepCv, {
               nextStep: this.nextStep, 
               prevStep: this.prevStep, 
               data: this.state.data})              
       case 5: 
-      return React.createElement(StepViewCv, {
+      return React.createElement(StepEnd, {
               prevStep: this.prevStep, 
               data: this.state.data})
     }
@@ -21563,7 +21630,7 @@ module.exports = React.createClass({displayName: "exports",
 })
 
 
-},{"./StepAuth":"/home/isaac/Web/cv-lo/src-js/components/StepAuth.js","./StepChooseStyle":"/home/isaac/Web/cv-lo/src-js/components/StepChooseStyle.js","./StepCreatingCv":"/home/isaac/Web/cv-lo/src-js/components/StepCreatingCv.js","./StepViewCv":"/home/isaac/Web/cv-lo/src-js/components/StepViewCv.js","./Welcome":"/home/isaac/Web/cv-lo/src-js/components/Welcome.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/TrelloAuth.js":[function(require,module,exports){
+},{"./StepAuth":"/home/isaac/Web/cv-lo/src-js/components/StepAuth.js","./StepChooseStyle":"/home/isaac/Web/cv-lo/src-js/components/StepChooseStyle.js","./StepCv":"/home/isaac/Web/cv-lo/src-js/components/StepCv.js","./StepEnd":"/home/isaac/Web/cv-lo/src-js/components/StepEnd.js","./StepInstructions":"/home/isaac/Web/cv-lo/src-js/components/StepInstructions.js","./Welcome":"/home/isaac/Web/cv-lo/src-js/components/Welcome.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/TrelloAuth.js":[function(require,module,exports){
 'use strict'
 var React = require('react')
 var request = require('superagent')
@@ -21605,10 +21672,10 @@ module.exports = React.createClass ({displayName: "exports",
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--welcome"}, 
 
-          React.createElement("p", {className: "step--message"}, "A Free & Simple Tool", React.createElement("br", null), " Trello board → Resume"), 
+          React.createElement("p", {className: "step--message"}, "A Free & Simple Tool"), 
 
-          React.createElement("div", {className: "btn--info"}, 
-            React.createElement("a", {href: "#"}, "Learn how to Structure Your Trello Board")
+          React.createElement("div", {className: "step--body"}, 
+            React.createElement("p", null, React.createElement("b", null, "for creating resumes from Trello boards."))
           ), 
 
           React.createElement(BtnNextStep, {nextStep: this.props.nextStep, nextText: "Start"})
@@ -21620,8 +21687,25 @@ module.exports = React.createClass ({displayName: "exports",
 })
 
 
-
 },{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/index.js":[function(require,module,exports){
+/* 
+
+TODO:::
+- fix ordering of list items in generated json (cards)
+- add more content to demo board
+- style the resume
+- --- 
+- buy domain - cv-lo.com
+- configure dns
+- add to nginx config on isaacgregson.com server
+- create emails - isaac and/or info -- @cv-lo.com 
+- add google analytics
+- launch :)
+
+*/
+
+
+
 'use strict'
 var React = require('react')
 var Steps = require('./components/Steps')

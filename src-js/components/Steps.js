@@ -2,9 +2,10 @@
 var React            = require('react')
 var Welcome          = require('./Welcome')
 var StepAuth         = require('./StepAuth')
+var StepInstructions = require('./StepInstructions')
 var StepChooseStyle  = require('./StepChooseStyle')
-var StepCreatingCv   = require('./StepCreatingCv')
-var StepViewCv       = require('./StepViewCv')
+var StepCv           = require('./StepCv')
+var StepEnd          = require('./StepEnd')
 
 
 
@@ -29,10 +30,6 @@ module.exports = React.createClass({
     })
   },
 
-  sayHello: function(sayHello) {
-    console.log('say ' + sayHello)
-  },
-
   setData: function(data) {
     console.log(data)
     this.setState({
@@ -45,27 +42,30 @@ module.exports = React.createClass({
 
       case 1: 
       return <Welcome 
+              nextStep={this.nextStep} />
+      case 2:
+      return <StepInstructions
               nextStep={this.nextStep}
               prevStep={this.prevStep} />
-      case 2: 
+
+      case 3: 
       return <StepAuth
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               setData={this.setData} 
-              sayHello={this.sayHello} 
               data={this.state.data} />
-      case 3: 
-      return <StepChooseStyle
-              nextStep={this.nextStep}
-              prevStep={this.prevStep} 
-              data={this.state.data} />
+      // case 3: 
+      // return <StepChooseStyle
+      //         nextStep={this.nextStep}
+      //         prevStep={this.prevStep} 
+      //         data={this.state.data} />
       case 4: 
-      return <StepCreatingCv
+      return <StepCv
               nextStep={this.nextStep}
               prevStep={this.prevStep} 
               data={this.state.data} />              
       case 5: 
-      return <StepViewCv 
+      return <StepEnd 
               prevStep={this.prevStep}
               data={this.state.data} />
     }

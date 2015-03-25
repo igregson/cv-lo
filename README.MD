@@ -36,3 +36,5 @@ And there are other open source projects. At least I found one other. It's writt
 - Create an "upload to Google docs" feature, especially valuable since the returned "product" would be easily editable (in contrast to PDFs).
 - Better architect the data flow/store (rather than passing data through props, integrate with a proper store). Weigh the benefits of this with the time needed/scope of project.
 - Consider adding client-side Trello auth to allow users to upload private boards. If doing this, the site would need to move to SSL.
+- Add state (urls for each step).
+- Figure out better approach to sharing instructions... noone wants to read lots of bullets when trying to use a simple tool.

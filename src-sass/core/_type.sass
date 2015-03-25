@@ -53,22 +53,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 
 h1, .h1
   font-size: 2.4em
-  font-weight: 300
+  font-weight: 700
 h2, .h2
   font-size: 2em
-  font-weight: 300
+  font-weight: 700
 h3, .h3
   font-size: 1.74em
-  font-weight: 300
+  font-weight: 700
 h4, .h4
   font-size: 1.5em
-  font-weight: 300
+  font-weight: 700
 h5, .h5
   font-size: 1.3em
-  font-weight: 300
+  font-weight: 700
 h6, .h6
   font-size: 1em
-  font-weight: 300
+  font-weight: 700
 
 // ---------------
 // Paragraphs
@@ -76,6 +76,7 @@ h6, .h6
 $font-size--p: 16px
 $line-height--p: 1.6
 p, ul, ol 
+  font-weight: 700
   font-size: $font-size--p
   line-height: $line-height--p
   @include bpMax(650px)
@@ -92,10 +93,10 @@ a
   color: $c-link
   cursor: pointer
   text-decoration: none
-  // border-bottom: 1px solid lighten($c-link, 45)
+  border-bottom: 2px solid lighten($c-link, 63)
   transition: all .2s ease
-  // &:hover
-  //   border-bottom: solid 1px transparent
+  &:hover
+    border-bottom: solid 2px $c-blue
 .btn a
   border: none 
   &:hover 
@@ -140,11 +141,11 @@ figcaption
 // ---------------
 // Lists
 
-.page--text, .post--text-body
+.step--body 
   ul, ol 
     font-size: 95%
     padding-left: 0
-    margin-top: 2rem
+    // margin-top: 2rem
     margin-left: 3rem
   ul 
     list-style: disc

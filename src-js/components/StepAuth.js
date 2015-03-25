@@ -27,6 +27,7 @@ module.exports = React.createClass ({
     // capture the current component before the request
     var currentComponent = this
 
+    // make request
     request 
     .get(url)
     .end(function(err, data) {
@@ -41,7 +42,6 @@ module.exports = React.createClass ({
         // on success, update appropriate states
         currentComponent.setState({ trelloStatus : "connected" })
         currentComponent.props.setData(data)
-        currentComponent.props.sayHello("hello")
       }
     })
   },

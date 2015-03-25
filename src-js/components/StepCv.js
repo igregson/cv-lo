@@ -23,7 +23,7 @@ module.exports = React.createClass ({
         style: 'sectionHeader'
       })
     }
-    // console.dir(lists)
+    console.dir(lists)
 
     // VALUES
     for (var i = 0; i < data.cards.length; i++) {
@@ -31,9 +31,9 @@ module.exports = React.createClass ({
 
       // nested array to add each card 
       // to its parent list
-      // TODO: figure out a better way to go
-      //       about this that doesn't need a 
-      //       nested loop
+      // TODO: consider a way to approach this 
+      //       without a nested loop, if there
+      //       is one
       for (var j = 0; j < lists.length; j++) {
         var list = lists[j]
         if (card.idList === list.id) {
@@ -42,7 +42,7 @@ module.exports = React.createClass ({
             style: 'subheader'
           })
           // if there's a description, add it to array
-          // just after the last one added, hence "j + 2"
+          // just after the last one added, hence "j + **2**"
           if ( card.desc ) {
             lists.splice(j + 2, 0, {
               text: card.desc,
@@ -52,7 +52,26 @@ module.exports = React.createClass ({
         }
       } // end nested loop
     } // end loop
+    // var cards = []
+    // for (var i = 0; i < data.cards.length; i++) {
+    //   var card = data.cards[i]
 
+    //   cards.push({
+    //     id: card.idList,
+    //     text: card.name,
+    //     style: 'subheader'
+    //   })
+    //   // if there's a description, add it 
+    //   if ( card.desc ) {
+    //     cards.push({
+    //       text: card.desc,
+    //       style: 'paragraph'
+    //     }) 
+    //   }
+    // } // end loop
+    // console.dir(cards)
+
+    // console.dir(lists)
     // var content = [
     //   {
     //     text: data.,
@@ -62,8 +81,6 @@ module.exports = React.createClass ({
 
     // content.splice(1, 0, lists)    
     var content = lists
-
-
 
     var docDefinition = {
 
@@ -79,35 +96,37 @@ module.exports = React.createClass ({
         sectionHeader: {
           fontSize: 19,
           bold: true,
+          marginTop: 7,
           marginBottom: 7
         },
         subheader: {
           fontSize: 12,
           bold: true,
+          marginTop: 4,
           marginBottom: 2
         },
         paragraph: {
           fontSize: 12,
+          marginTop: 1,
           marginBottom: 2
         }
       }
     }
 
-    console.log(docDefinition)
+    // console.log(content)
+    // console.log(docDefinition)
 
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
 
+          // <div className="step--indicator">3</div>
     return (
       <div className="primary">
         <div className="step step--chooseBoard">
 
-          <div className="step--indicator">2</div>
-          <p className="step--message">Choose Style</p>
+          <p className="step--message">Here you go :)</p>
 
           <div className="step--body">
-            <p>Hold Tight...</p>
-            <p>Creating your CV...</p>
-            <button className="btn--default" onClick={pdfOpen}>Open CV</button>
+            <button className="btn--default" onClick={pdfOpen}>Open Resume</button>
           </div>
 
           <BtnPrevStep prevStep={this.props.prevStep} />
