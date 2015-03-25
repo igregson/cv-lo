@@ -32939,52 +32939,28 @@ var _ = require('lodash')
 module.exports = React.createClass ({displayName: "exports",
   render: function() { 
     
+
     var data = this.props.data.body
 
 
-    // KEYS
+    // ---------------- KEYS -------------------
     var lists = []
     for (var i = 0; i < data.lists.length; i++) {
       var list = data.lists[i]
 
         console.log(list.name)
         lists.push({
-          text: list.name, 
+          pos: list.pos,
           id: list.id,
+          text: list.name, 
           style: 'sectionHeader'
         })
     }
     console.dir(lists)
+    list = _.sortByAll(lists, 'pos')
 
-    // VALUES
-    // for (var i = 0; i < data.cards.length; i++) {
-    //   var card = data.cards[i]
 
-      // nested array to add each card 
-      // to its parent list
-      // TODO: consider a way to approach this 
-      //       without a nested loop, if there
-      //       is one
-      // for (var j = 0; j < lists.length; j++) {
-      //   var list = lists[j]
-      //   if (card.idList === list.id && card.labels) {
-
-      //   } else if (card.idList === list.id) {
-      //     lists.splice(j + 1, 0, {
-      //       text: card.name,
-      //       style: 'subheader'
-      //     })
-      //     // if there's a description, add it to array
-      //     // just after the last one added, hence "j + **2**"
-      //     if ( card.desc ) {
-      //       lists.splice(j + 2, 0, {
-      //         text: card.desc,
-      //         style: 'paragraph'
-      //       }) 
-      //     }
-      //   }
-      // } // end nested loop
-    // } // end loop
+    // ---------------- CARDS ------------------
     var cards = []
     for (var i = 0; i < data.cards.length; i++) {
       var card = data.cards[i]
@@ -33003,47 +32979,42 @@ module.exports = React.createClass ({displayName: "exports",
         }) 
       }
     } // end loop
-    console.dir(cards)
+    // console.dir(cards)
 
 
-    // var arrayCombined = lists.concat(cards).sort(function(a,b) {
-
-    //   return (a.id < b.id) ?  1 : 
-    //         ((a.id > b.id) ? -1 : 0);
-
-    //   // if (a.id < b.id) {
-    //   //   return 1
-    //   // } else if (a.id > b.id) {
-    //   //   return -1
-    //   // } else {
-    //   //   return 0
-    //   // }
-
-    // }).reverse()
     var arrayConcated = lists.concat(cards)
-    var arrayCombined = _.sortByAll(arrayConcated, 'id')
 
-    // var result = [];
-    // // Atleast one of the arrays should have elements
-    // while(lists.length || cards.length) {
-    //     // If both of them have elements
-    //     if (lists.length && cards.length) {
-    //         // Compare the first elements's ids
-    //         if (lists[0].id <= cards[0].id) {
-    //             // If short's id is smaller then push short's element
-    //             result.push(lists.shift());
-    //         } else {
-    //             // otherwise long's element
-    //             result.push(cards.shift());
-    //         }
-    //     } else if (lists.length) {
-    //         // we have only short's elements left.
-    //         result.push(lists.shift());
-    //     } else {
-    //         // we have only long's elements left.
-    //         result.push(cards.shift());
+    var arrayCombined = _.chain(arrayConcated)
+      .groupBy('id')
+      .sortByAll(['pos'])
+      .flatten()
+      .value();
+    // var arrayCombined = (cards.concat(lists).sort(function(a,b) {
+
+    //         return (a.id > b.id) ?  1 : 
+    //               ((a.id < b.id) ? -1 : 0);
+
+    // })).sort(function(a,b) {
+
+    //             return (a.name > b.name) ?  1 : 
+    //                   ((a.name < b.name) ? -1 : 0);
+
+    // });;
+    // var arrayConcated = lists.concat(cards)
+    // var arrayCombined = _.chain(arrayConcated)
+    //   .sortBy(arrayConcated, function(n) {
+    //     if ( arrayConcated[n].pos ) {
+    //       return 'pos' 
     //     }
-    // }
+    //   })
+    //   .sortBy(arrayConcated, function(n) {
+    //     if ( !arrayConcated[n].pos ) {
+    //       return 'id'
+    //     }
+    //   })
+    //   .value();
+
+
 
     console.dir(arrayCombined)
     // console.dir(result)
