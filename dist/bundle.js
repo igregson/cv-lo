@@ -32965,11 +32965,23 @@ module.exports = React.createClass ({displayName: "exports",
     for (var i = 0; i < data.cards.length; i++) {
       var card = data.cards[i]
 
-      cards.push({
-        id: card.idList,
-        text: card.name,
-        style: 'subheader'
-      })
+      // check for labels, use label name as style name
+      // TODO: be sure to emphasize the "special lables"
+      //       in docs
+      if (card.labels[0]) {
+        cards.push({
+          id: card.idList,
+          text: card.name,
+          style: card.labels[0].name
+        })
+      } else {
+        cards.push({
+          id: card.idList,
+          text: card.name,
+          style: 'subheader'
+        })
+      }
+
       // if there's a description, add it 
       if ( card.desc ) {
         cards.push({
@@ -33000,22 +33012,14 @@ module.exports = React.createClass ({displayName: "exports",
       .value();
 
 
-    console.dir(arrayCombined)
-    // console.dir(result)
-
     var content = arrayCombined
+    // remove 0 index to since we don't need the bio' header
     content.shift()
-    // var content = result
+
 
     var docDefinition = {
       content: content,
       styles: {
-        header: {
-          fontSize: 22,
-          bold: true,
-          alignment: 'center',
-          marginBottom: 10
-        }, 
         sectionHeader: {
           fontSize: 19,
           bold: true,
@@ -33032,7 +33036,28 @@ module.exports = React.createClass ({displayName: "exports",
           fontSize: 12,
           marginTop: 1,
           marginBottom: 2
-        }
+        },
+        name: {
+          fontSize: 22,
+          bold: true,
+          alignment: 'center',
+          marginBottom: 8
+        }, 
+        headline: {
+          fontSize: 18,
+          bold: true,
+          alignment: 'center',
+          marginBottom: 10
+        },
+        location: {
+          fontSize: 14,
+          italic: true
+        },
+        current: {
+          fontSize: 14,
+          italic: true,
+          alignment: 'right'
+        },
       }
     }
 
