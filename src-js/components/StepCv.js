@@ -58,43 +58,26 @@ module.exports = React.createClass ({
     var arrayConcated = lists.concat(cards)
 
     var arrayCombined = _.chain(arrayConcated)
+      // this is the magic...
       .groupBy('id')
+      // Only section headers have a position in our array (not)
+      // the json from Trello, due to the way they use the 
+      // value (it only translates sequentially for lists, not 
+      // cards)
+      // Thus -- get things in the right order via 'pos' on 
+      //         section headers
       .sortByAll(['pos'])
+      // now that they're in the proper order, undo the group
       .flatten()
+      // return the value
       .value();
-    // var arrayCombined = (cards.concat(lists).sort(function(a,b) {
-
-    //         return (a.id > b.id) ?  1 : 
-    //               ((a.id < b.id) ? -1 : 0);
-
-    // })).sort(function(a,b) {
-
-    //             return (a.name > b.name) ?  1 : 
-    //                   ((a.name < b.name) ? -1 : 0);
-
-    // });;
-    // var arrayConcated = lists.concat(cards)
-    // var arrayCombined = _.chain(arrayConcated)
-    //   .sortBy(arrayConcated, function(n) {
-    //     if ( arrayConcated[n].pos ) {
-    //       return 'pos' 
-    //     }
-    //   })
-    //   .sortBy(arrayConcated, function(n) {
-    //     if ( !arrayConcated[n].pos ) {
-    //       return 'id'
-    //     }
-    //   })
-    //   .value();
-
 
 
     console.dir(arrayCombined)
     // console.dir(result)
 
-    // remove first header (since it's just for bio/meta info)
-    // lists.shift()
     var content = arrayCombined
+    content.shift()
     // var content = result
 
     var docDefinition = {
