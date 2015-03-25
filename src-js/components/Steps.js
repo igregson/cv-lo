@@ -16,7 +16,6 @@ module.exports = React.createClass({
       board : ""
     }
   },
-
   
   nextStep: function() {
     this.setState({
@@ -47,7 +46,7 @@ module.exports = React.createClass({
       case 1: 
       return <Welcome 
               nextStep={this.nextStep}
-              prevStep={this.prevStep} />      
+              prevStep={this.prevStep} />
       case 2: 
       return <StepAuth
               nextStep={this.nextStep}

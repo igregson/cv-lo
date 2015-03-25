@@ -94,11 +94,8 @@ module.exports = React.createClass ({
     }
 
     console.log(docDefinition)
-    console.log(pdfMake.createpdf)
 
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
-    // var pdfOpen = console.log(pdfMake.createPdf())
-
 
     return (
       <div className="primary">

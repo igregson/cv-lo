@@ -6,8 +6,8 @@
   "scripts": {
     "css:build": "scss-cli --output-style compressed src-sass/main.scss -o dist/",
     "css:watch": "onchange 'src-sass/' -- npm run css:build",
-    "js:build": "browserify -r node_modules/pdfmake/browser-extensions/virtual-fs.js:fs src-js/index.js -o dist/bundle.js",
-    "js:watch": "watchify -r node_modules/pdfmake/browser-extensions/virtual-fs.js:fs src-js/index.js -o dist/bundle.js",
+    "js:build": "browserify -t reactify src-js/index.js -o dist/bundle.js",
+    "js:watch": "watchify -t reactify src-js/index.js -o dist/bundle.js",
     "html:build": "html-minifier --collapse-whitespace --keep-closing-slash --remove-comments index.html -o dist/index.html",
     "html:watch": "onchange  '!dist/**/*' '*.html' -- npm run html:build",
     "browserSync": "browser-sync start --server 'dist' --files 'dist/*' --exclude 'dist/.bundle.js' --logLevel 'info' --no-open --no-notify",
@@ -18,13 +18,6 @@
   },
   "author": "Isaac Gregson",
   "license": "MIT",
-  "browserify": {
-    "transform": ["browserify-shim", "reactify"]
-  },
-  "browserify-shim": {
-    "./src-js/vendor/pdfmake.js": "global:pdfMake",
-    "./src-js/vendor/vfs_fonts.js": "global:createPdf"
-  },
   "devDependencies": {
     "autoprefixer": "^5.1.0",
     "brfs": "^1.0.2",

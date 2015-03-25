@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/isaac/Web/cv-lo/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/isaac/Web/cv-lo/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -21026,8 +21026,18 @@ var React = require('react')
 
 
 module.exports = React.createClass ({displayName: "exports",
+
   
   render: function() {
+    // var nextText = function() {
+    //   return "next"
+    //   if (this.props.nextText) {
+    //     return this.props.nextText 
+    //   } else {
+    //     return "next"
+    //   }
+    // }
+
     return (
       React.createElement("div", {className: "step--btn step--btn_next"}, 
         React.createElement("button", {onClick: this.props.nextStep}, "Next")
@@ -21410,11 +21420,8 @@ module.exports = React.createClass ({displayName: "exports",
     }
 
     console.log(docDefinition)
-    console.log(pdfMake.createpdf)
 
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
-    // var pdfOpen = console.log(pdfMake.createPdf())
-
 
     return (
       React.createElement("div", {className: "primary"}, 
@@ -21489,7 +21496,6 @@ module.exports = React.createClass({displayName: "exports",
       board : ""
     }
   },
-
   
   nextStep: function() {
     this.setState({
@@ -21520,7 +21526,7 @@ module.exports = React.createClass({displayName: "exports",
       case 1: 
       return React.createElement(Welcome, {
               nextStep: this.nextStep, 
-              prevStep: this.prevStep})      
+              prevStep: this.prevStep})
       case 2: 
       return React.createElement(StepAuth, {
               nextStep: this.nextStep, 
@@ -21599,13 +21605,13 @@ module.exports = React.createClass ({displayName: "exports",
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--welcome"}, 
 
-          React.createElement("p", {className: "step--message"}, "A Free & Easy Tool", React.createElement("br", null), " Trello board → Resume"), 
+          React.createElement("p", {className: "step--message"}, "A Free & Simple Tool", React.createElement("br", null), " Trello board → Resume"), 
 
           React.createElement("div", {className: "btn--info"}, 
             React.createElement("a", {href: "#"}, "Learn how to Structure Your Trello Board")
           ), 
 
-          React.createElement(BtnNextStep, {nextStep: this.props.nextStep})
+          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, nextText: "Start"})
 
         )
       )
@@ -21629,6 +21635,4 @@ React.render (
 
 )
 
-},{"./components/Steps":"/home/isaac/Web/cv-lo/src-js/components/Steps.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"fs":[function(require,module,exports){
-
-},{}]},{},["/home/isaac/Web/cv-lo/src-js/index.js"]);
+},{"./components/Steps":"/home/isaac/Web/cv-lo/src-js/components/Steps.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}]},{},["/home/isaac/Web/cv-lo/src-js/index.js"]);
