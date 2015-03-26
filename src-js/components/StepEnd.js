@@ -4,19 +4,33 @@ var BtnPrevStep = require('./BtnPrevStep')
 
 
 
+
+
+
+
 module.exports = React.createClass ({
 
   onClickTwitter: function(e) {
     e.preventDefault()
+
+    // for centering the share popup
+    var left = window.screenX + (window.innerWidth - 550) / 2
+    var top = window.screenY + (window.innerHeight - 235) / 2
     var shareTwitter = "https://twitter.com/share?text=&amp;url=http://cv-lo.com"
-    window.open(shareTwitter, 'twitter-share', 'width=550,height=235')
+
+    window.open(shareTwitter, "twitter-share", "width=550,height=235,top="+top+",left="+left+'"')
     return false
   },
 
   onClickFacebook: function(e) {
     e.preventDefault()
+
+    // for centering the share popup
+    var left = window.screenX + (window.innerWidth - 580) / 2
+    var top = window.screenY + (window.innerHeight - 296) / 2
     var shareFacebook = "https://www.facebook.com/sharer/sharer.php?u=http://cv-lo.com"
-    window.open(shareFacebook, 'facebook-share','width=580,height=296')
+
+    window.open(shareFacebook, "facebook-share","width=580,height=296,top="+top+",left="+left+'"')
     return false
   },
 
@@ -48,6 +62,3 @@ module.exports = React.createClass ({
     )
   }
 })
-
-
-// <a class="icon post-footer--share-link icon-twitter" href="https://twitter.com/share?text=&amp;url=/simplet/demo/test-post-10/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
