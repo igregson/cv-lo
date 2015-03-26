@@ -14,7 +14,7 @@ module.exports = React.createClass({
       message =  "Something is wrong. Try again."
 
     } else if (this.props.trelloStatus === "errorTrello") {
-      message = "Try again. Make sure your board is public!"
+      message = "Make sure your board is public!"
 
     } else { message = "" }
 

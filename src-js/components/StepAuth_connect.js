@@ -25,12 +25,12 @@ module.exports = React.createClass({
 
   render: function() {
 
+          // <div className="step--indicator">2</div>
     return (
 
       <div className="primary">
         <div className="step step--connect">
 
-          <div className="step--indicator">2</div>
           <p className="step--message">Connect to Trello Resume Board</p>
 
           <div className="step--body">

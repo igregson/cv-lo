@@ -32787,12 +32787,12 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function() {
 
+          // <div className="step--indicator">2</div>
     return (
 
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "2"), 
           React.createElement("p", {className: "step--message"}, "Connect to Trello Resume Board"), 
 
           React.createElement("div", {className: "step--body"}, 
@@ -32827,15 +32827,17 @@ module.exports = React.createClass({displayName: "exports",
 
 
   render: function() {
+          // <div className="step--indicator">&#8226;</div>
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "•"), 
           React.createElement("p", {className: "step--message"}, "Connected!"), 
 
           React.createElement("div", {className: "step--body"}, 
-            React.createElement("p", null, "Go to the next step for your Resume.")
+            React.createElement("p", null, "Great!", React.createElement("br", null), 
+            "Your resume awaits.", React.createElement("br", null), 
+            "Just click \"next.\"")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
@@ -32865,7 +32867,7 @@ module.exports = React.createClass({displayName: "exports",
       message =  "Something is wrong. Try again."
 
     } else if (this.props.trelloStatus === "errorTrello") {
-      message = "Try again. Make sure your board is public!"
+      message = "Make sure your board is public!"
 
     } else { message = "" }
 
@@ -32944,7 +32946,6 @@ module.exports = React.createClass ({displayName: "exports",
     for (var i = 0; i < data.lists.length; i++) {
       var list = data.lists[i]
 
-        console.log(list.name)
         lists.push({
           pos: list.pos,
           id: list.id,
@@ -32976,8 +32977,42 @@ module.exports = React.createClass ({displayName: "exports",
         })
       }
 
-      // if there's a description, add it 
-      if ( card.desc ) {
+      // -------------- DESC/LIST ALGORITHM ---- 
+      // check and act for paragraph followed by list
+      if ( card.desc && card.desc.indexOf('\n\n') > -1 && card.desc.indexOf('\n') > -1) {
+        // just paragraphs here
+        cards.push({
+          id: card.idList,
+          text: card.desc.substring(0, card.desc.indexOf('\n\n')),
+          style: 'paragraph'
+        }) 
+        // just lists items here
+        if ( card.desc.indexOf('\n') > -1) {
+          // remove everything after last instance of \n\n
+          var ul = card.desc.substring(card.desc.lastIndexOf("\n\n") + 1)
+          cards.push({
+            id: card.idList,
+            ul: ul.split('\n-'),
+            style: 'list'
+          }) 
+        }
+      } else if ( card.desc.indexOf('\n-') > -1) {
+      // no paragarph, just list items
+        cards.push({
+          id: card.idList,
+          // split on markdown list delimiter due to no 
+          // line break before first list item. 
+          // This will likely break things if inside of 
+          // a list "-" is used... 
+          // TODO: find a better approach to remove the
+          // first markdown list item
+          // HOW? 
+          // - parse the text as markdown? likely won't 
+          // work due to the pdf library not taking html
+          ul: card.desc.split('-'),
+          style: 'list'
+        }) 
+      } else if ( card.desc ) {
         cards.push({
           id: card.idList,
           text: card.desc,
@@ -32986,6 +33021,7 @@ module.exports = React.createClass ({displayName: "exports",
       }
     } // end loop
     // console.dir(cards)
+    console.log(cards)
 
 
     var arrayConcated = lists.concat(cards)
@@ -33014,43 +33050,43 @@ module.exports = React.createClass ({displayName: "exports",
     var docDefinition = {
       content: content,
       styles: {
-        sectionHeader: {
-          fontSize: 19,
-          bold: true,
-          marginTop: 7,
-          marginBottom: 7
-        },
-        subheader: {
-          fontSize: 12,
-          bold: true,
-          marginTop: 4,
-          marginBottom: 2
-        },
-        paragraph: {
-          fontSize: 12,
-          marginTop: 1,
-          marginBottom: 2
-        },
+        // main title
         name: {
           fontSize: 22,
           bold: true,
           alignment: 'center',
-          marginBottom: 8
+          marginBottom: 8,
         }, 
-        headline: {
+        // job title -> front-end dev
+        label: {
           fontSize: 18,
-          bold: true,
           alignment: 'center',
-          marginBottom: 10
+          marginBottom: 10,
         },
         location: {
           fontSize: 14,
-          italic: true
-        },
-        current: {
-          fontSize: 14,
           italic: true,
-          alignment: 'right'
+          alignment: 'center',
+        },
+        sectionHeader: {
+          fontSize: 16,
+          bold: true,
+          marginTop: 7,
+          marginBottom: 7,
+        },
+        subheader: {
+          fontSize: 11,
+          bold: true,
+          marginTop: 4,
+          marginBottom: 2,
+        },
+        paragraph: {
+          fontSize: 11,
+          marginTop: 1,
+          marginBottom: 2,
+        },
+        list: {
+          marginLeft: 5,
         },
       }
     }
@@ -33066,7 +33102,7 @@ module.exports = React.createClass ({displayName: "exports",
           React.createElement("p", {className: "step--message"}, "Here you go :)"), 
 
           React.createElement("div", {className: "step--body"}, 
-            React.createElement("button", {className: "btn--default", onClick: pdfOpen}, "Open Resume")
+            React.createElement("button", {className: "btn--default btn--pdf", onClick: pdfOpen}, "Open Resume PDF")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
@@ -33079,6 +33115,61 @@ module.exports = React.createClass ({displayName: "exports",
 })
 
 
+
+
+
+    // var jsonSchema_top = []
+    // _.forEach(data.lists, function(n) {
+    //   jsonSchema_top.push({
+    //     pos: n.pos,
+    //     id: n.id,
+    //     text: n.name
+    //   })
+    // })
+    // var jsonSchema_nested = []
+    // _.forEach(data.cards, function(n) {
+
+
+    //   if (n.labels[0]) {
+    //     jsonSchema_nested.push({
+    //       closed: n.closed,
+    //       id: n.idList,
+    //       text: n.name,
+    //       label: n.labels[0].name,
+    //       desc: n.desc,
+    //       ul: n.desc.split('\n-')
+    //     })  
+    //   } else {
+    //     jsonSchema_nested.push({
+    //       closed: n.closed,
+    //       id: n.idList,
+    //       text: n.name,
+    //       desc: n.desc,
+    //       ul: n.desc.split('\n-')
+    //     })
+    //   }
+    // })
+    
+    // console.log(jsonSchema_nested)
+
+
+    // var arrayConcated = jsonSchema_top.concat(jsonSchema_nested)
+
+    // var arrayCombined = _.chain(arrayConcated)
+    //   // this is the magic...
+    //   .groupBy('id')
+    //   // Only section headers have a position in our array (not)
+    //   // the json from Trello, due to the way they use the 
+    //   // value (it only translates sequentially for lists, not 
+    //   // cards)
+    //   // Thus -- get things in the right order via 'pos' on 
+    //   //         section headers
+    //   .sortByAll(['pos'])
+    //   // now that they're in the proper order, undo the group
+    //   .flatten()
+    //   // return the value
+    //   .value();
+    //   console.log(arrayCombined)
 
 },{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","lodash":"/home/isaac/Web/cv-lo/node_modules/lodash/index.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepEnd.js":[function(require,module,exports){
 'use strict'
@@ -33128,11 +33219,11 @@ var BtnNextStep = require('./BtnNextStep')
 
 module.exports = React.createClass ({displayName: "exports",
   render: function() { 
+          // <div className="step--indicator">1</div>
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--instructions"}, 
 
-          React.createElement("div", {className: "step--indicator"}, "1"), 
           React.createElement("p", {className: "step--message"}, "Instructions"), 
 
           React.createElement("div", {className: "step--body"}, 
@@ -33142,7 +33233,7 @@ module.exports = React.createClass ({displayName: "exports",
                 React.createElement("li", null, "Each list on your board will become a section of your resume"), 
                 React.createElement("li", null, "Each list item (\"card\") will be a resume entry for that section"), 
                 React.createElement("li", null, "Add descriptions to list items (optional)"), 
-                React.createElement("li", null, "Create special \"bio\" list with cards tagged \"bio\" for the meta-aspects of your cv")
+                React.createElement("li", null, "Create a special \"bio\" list with cards tagged spcially for the meta-aspects of your cv (name, location, & label)")
               )
             ), 
             React.createElement("p", null, "TLDR:", React.createElement("br", null), 
