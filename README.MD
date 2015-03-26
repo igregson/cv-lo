@@ -1,8 +1,30 @@
 # cv-Lo
 
-I use Trello for lots of things (and like it a lot). As I was recently polishing-up my resume, I naturally decided to organize things in Trello. Naturally, an "itch" occurred. "There needs to be an easy way to move my resume info from Trello to a word document and/or PDF," I thought. A few days later: cv-Lo. 
+A client-side app for turning a Trello board into a resume. Uses React for the views. [pdfmake](https://github.com/bpampuch/pdfmake) for generating the PDF clientside.
 
-## Usage
+## Local Usage
+
+Getting a copy of cv-Lo running locally isn't hard. 
+
+1. `git clone https://github.com/igregson/cv-lo.git`
+2. `npm install`
+3. `npm start`
+4. visit `localhost:3000`
+
+### `Package.json` As a Build Tool
+
+cv-Lo makes use of NPM as a build tool. Cheack out `package.json` for an understanding.
+
+`#### npm start`
+
+Starts the development environment with a Browsersync server - an alias for `npm run watch`. 
+
+
+`#### npm run build`
+
+Builds everything. Simple as that.
+
+## Client-side Usage
 
 ### On the Trello side
 
@@ -33,9 +55,13 @@ There's also Zapier. I created a zap to sync my Trello resume board with my Goog
 
 And there are other open source projects. At least I found one other. It's written in Python and has a pretty sweet name, [Trelloscribe](https://github.com/mcktrtl/trelloscribe).
 
+## Motivation
+
+I use Trello for lots of things (and like it a lot). As I was recently polishing-up my resume, I naturally decided to organize things in Trello. Naturally, an "itch" occurred. "There needs to be an easy way to move my resume info from Trello to a word document and/or PDF," I thought. A few days later: cv-Lo. 
+
 ## An Exercise / Proof-of-concept
 
-While cv-Lo is public facing and fully functioning, I built this mostly for myself (and anyone else who might find it handy). On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. 
+While cv-Lo is public facing and fully functioning, I built this mostly for myself (and anyone else who might find it handy). On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. The implementation is basic and there's certainly room for improvement, but I sure learned a lot through building it.
 
 *Use it or otherwise generally find it helpful?* Awesome.  
 *Want to contribute and make it better?* Sweet.  
