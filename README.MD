@@ -33,7 +33,7 @@ There's also Zapier. I created a zap to sync my Trello resume board with my Goog
 
 And there are other open source projects. At least I found one other. It's written in Python and has a pretty sweet name, [Trelloscribe](https://github.com/mcktrtl/trelloscribe).
 
-## an Exercise / Proof-of-concept
+## An Exercise / Proof-of-concept
 
 While cv-Lo is public facing and fully functioning, I built this mostly for myself (and anyone else who might find it handy). On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. 
 
