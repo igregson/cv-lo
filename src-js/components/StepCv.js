@@ -2,11 +2,7 @@
 var React = require('react')
 var BtnPrevStep = require('./BtnPrevStep')
 var BtnNextStep = require('./BtnNextStep')
-var parseJson = require('./../lib/parseJson')
 var _ = require('lodash')
-// var pdfMake = require('../vendor/pdfmake')
-// var createPdf = require('../vendor/vfs_fonts')
-
 
 
 module.exports = React.createClass ({
@@ -39,8 +35,6 @@ module.exports = React.createClass ({
       var card = data.cards[i]
 
       // check for labels, use label name as style name
-      // TODO: be sure to emphasize the "special lables"
-      //       in docs
       if (card.labels[0]) {
         cards.push({
           id: card.idList,
@@ -134,9 +128,7 @@ module.exports = React.createClass ({
       }
     }
 
-    // console.log(content)
-    // console.log(docDefinition)
-
+    console.log(docDefinition)
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
 
           // <div className="step--indicator">3</div>

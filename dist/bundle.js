@@ -32929,11 +32929,7 @@ module.exports = React.createClass ({displayName: "exports",
 var React = require('react')
 var BtnPrevStep = require('./BtnPrevStep')
 var BtnNextStep = require('./BtnNextStep')
-var parseJson = require('./../lib/parseJson')
 var _ = require('lodash')
-// var pdfMake = require('../vendor/pdfmake')
-// var createPdf = require('../vendor/vfs_fonts')
-
 
 
 module.exports = React.createClass ({displayName: "exports",
@@ -32966,8 +32962,6 @@ module.exports = React.createClass ({displayName: "exports",
       var card = data.cards[i]
 
       // check for labels, use label name as style name
-      // TODO: be sure to emphasize the "special lables"
-      //       in docs
       if (card.labels[0]) {
         cards.push({
           id: card.idList,
@@ -33061,9 +33055,7 @@ module.exports = React.createClass ({displayName: "exports",
       }
     }
 
-    // console.log(content)
-    // console.log(docDefinition)
-
+    console.log(docDefinition)
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
 
           // <div className="step--indicator">3</div>
@@ -33088,7 +33080,7 @@ module.exports = React.createClass ({displayName: "exports",
 
 
 
-},{"./../lib/parseJson":"/home/isaac/Web/cv-lo/src-js/lib/parseJson.js","./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","lodash":"/home/isaac/Web/cv-lo/node_modules/lodash/index.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepEnd.js":[function(require,module,exports){
+},{"./BtnNextStep":"/home/isaac/Web/cv-lo/src-js/components/BtnNextStep.js","./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","lodash":"/home/isaac/Web/cv-lo/node_modules/lodash/index.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepEnd.js":[function(require,module,exports){
 'use strict'
 var React = require('react')
 var BtnPrevStep = require('./BtnPrevStep')
@@ -33317,9 +33309,11 @@ module.exports = React.createClass ({displayName: "exports",
 /* 
 
 TODO:::
-- fix ordering of list items in generated json (cards)
-- add more content to demo board
+X fix ordering of list items in generated json (cards)
+X add more content to demo board
 - style the resume
+- add a few more "speical labels" for basic formatting -- center? bold? italic?
+- emphasize the "special lables" in docs
 - --- 
 - buy domain - cv-lo.com
 - configure dns
@@ -33345,56 +33339,4 @@ React.render (
 
 )
 
-},{"./components/Steps":"/home/isaac/Web/cv-lo/src-js/components/Steps.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/lib/parseJson.js":[function(require,module,exports){
-// http://techslides.com/how-to-parse-and-search-json-in-javascript
-
-//return an array of objects according to key, value, or key and value matching
-var getObjects = exports.getObjects = function(obj, key, val) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getObjects(obj[i], key, val));    
-        } else 
-        //if key matches and value matches or if key matches and value is not passed (eliminating the case where key matches but passed value does not)
-        if (i == key && obj[i] == val || i == key && val == '') { //
-            objects.push(obj);
-        } else if (obj[i] == val && key == ''){
-            //only add if the object is not already in the array
-            if (objects.lastIndexOf(obj) == -1){
-                objects.push(obj);
-            }
-        }
-    }
-    return objects;
-}
- 
-//return an array of values that match on a certain key
-var getValues = exports.getValues = function(obj, key) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getValues(obj[i], key));
-        } else if (i == key) {
-            objects.push(obj[i]);
-        }
-    }
-    return objects;
-}
- 
-//return an array of keys that match on a certain value
-var getKeys = exports.getKeys = function(obj, val) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getKeys(obj[i], val));
-        } else if (obj[i] == val) {
-            objects.push(i);
-        }
-    }
-    return objects;
-}
-
-},{}]},{},["/home/isaac/Web/cv-lo/src-js/index.js"]);
+},{"./components/Steps":"/home/isaac/Web/cv-lo/src-js/components/Steps.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}]},{},["/home/isaac/Web/cv-lo/src-js/index.js"]);
