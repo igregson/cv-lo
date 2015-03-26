@@ -33438,9 +33438,9 @@ module.exports = React.createClass ({displayName: "exports",
 TODO:::
 X fix ordering of list items in generated json (cards)
 X add more content to demo board
-- style the resume
-- add a few more "speical labels" for basic formatting -- center? bold? italic?
-- emphasize the "special lables" in docs
+X style the resume
+X add a few more "speical labels" for basic formatting -- center? bold? italic?
+X emphasize the "special lables" in docs
 - --- 
 - buy domain - cv-lo.com
 - configure dns
