@@ -1,10 +1,10 @@
-## cv-Lo
+# cv-Lo
 
 I use Trello for lots of things (and like it a lot). As I was recently polishing-up my resume, I naturally decided to organize things in Trello. Naturally, an "itch" occurred. "There needs to be an easy way to move my resume info from Trello to a word document and/or PDF," I thought. A few days later: cv-Lo. 
 
-### Usage
+## Usage
 
-#### On the Trello side
+### On the Trello side
 
 Create a board, make it public. It has to be public for cv-Lo to upload it (see todo item for thoughts on client-side auth). 
 
@@ -17,11 +17,11 @@ Board organization is opinionated only as much as necessary:
 
 > Tip: Your board only has to be public for uploading it to cv-Lo, meaning it's super easy to toggle between private/public if you don't want your trello resume board to be public. 
 
-#### On the cv-Lo side
+### On the cv-Lo side
 
 Just click, paste, view, download, and all the rest that you'd expect with a public-facing project.
 
-### Aren't there other ways to do this?
+## Aren't there other ways to do this?
 
 Yes, of course. And cv-Lo isn't necessarily the best. Especially with its current limitations (only outputing a PDF, lack of templates, etc).
 
@@ -33,9 +33,12 @@ There's also Zapier. I created a zap to sync my Trello resume board with my Goog
 
 And there are other open source projects. At least I found one other. It's written in Python and has a pretty sweet name, [Trelloscribe](https://github.com/mcktrtl/trelloscribe).
 
-### Primarily an Exercise / Proof-of-concept
+## an Exercise / Proof-of-concept
 
-While cv-Lo is public facing and fully functioning, it wasn't born out of any master plan or anything. On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. 
+While cv-Lo is public facing and fully functioning, I built this mostly for myself (and anyone else who might find it handy). On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. 
+
+*Use it or otherwise generally find it helpful?* Awesome.  
+*Want to contribute and make it better?* Sweet.  
 
 ### TODO: 
 
