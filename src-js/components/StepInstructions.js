@@ -7,7 +7,7 @@ var BtnNextStep = require('./BtnNextStep')
 
 module.exports = React.createClass ({
   render: function() { 
-          // <div className="step--indicator">1</div>
+
     return (
       <div className="primary">
         <div className="step step--instructions">
@@ -31,7 +31,7 @@ module.exports = React.createClass ({
           </div>
 
           <BtnPrevStep prevStep={this.props.prevStep} />
-          <BtnNextStep nextStep={this.props.nextStep} />
+          <BtnNextStep nextStep={this.props.nextStep} text="Start" />
 
         </div>
       </div>

@@ -54,11 +54,6 @@ module.exports = React.createClass({
               prevStep={this.prevStep}
               setData={this.setData} 
               data={this.state.data} />
-      // case 3: 
-      // return <StepChooseStyle
-      //         nextStep={this.nextStep}
-      //         prevStep={this.prevStep} 
-      //         data={this.state.data} />
       case 4: 
       return <StepCv
               nextStep={this.nextStep}

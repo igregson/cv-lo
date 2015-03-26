@@ -25,9 +25,7 @@ module.exports = React.createClass({
 
   render: function() {
 
-          // <div className="step--indicator">2</div>
     return (
-
       <div className="primary">
         <div className="step step--connect">
 
@@ -42,7 +40,7 @@ module.exports = React.createClass({
           </div>
 
           <Errors trelloStatus={this.props.trelloStatus} />
-          <BtnPrevStep prevStep={this.props.prevStep} />
+          <BtnPrevStep prevStep={this.props.prevStep} text="back to instructions" />
 
         </div>
       </div>

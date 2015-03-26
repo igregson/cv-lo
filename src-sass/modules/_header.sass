@@ -1,7 +1,12 @@
 .site-header
   margin: 0 auto
   text-align: center
-  padding-top: 3rem
+  @include bpMax(600px)
+    padding-top: 1rem
+  @include bp(600px)
+    padding-top: 3rem
+  a 
+    border-bottom: none
 
 .logo
   fill: white
@@ -15,3 +20,5 @@
   font-weight: 600
   margin-top: 5px
   font-size: .7em
+  @include bpMax(600px)
+    margin-bottom: 25px

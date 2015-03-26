@@ -32631,19 +32631,17 @@ var React = require('react')
 module.exports = React.createClass ({displayName: "exports",
 
   
-  render: function() {
-    // var nextText = function() {
-    //   return "next"
-    //   if (this.props.nextText) {
-    //     return this.props.nextText 
-    //   } else {
-    //     return "next"
-    //   }
-    // }
+  getDefaultProps: function() {
+    return {
+      text: 'Next'
+    }
+  },
 
+
+  render: function() {
     return (
       React.createElement("div", {className: "step--btn step--btn_next"}, 
-        React.createElement("button", {onClick: this.props.nextStep}, "Next")
+        React.createElement("button", {onClick: this.props.nextStep}, this.props.text)
       )
     )
   }
@@ -32659,10 +32657,18 @@ var React = require('react')
 
 module.exports = React.createClass ({displayName: "exports",
 
+
+  getDefaultProps: function() {
+    return {
+      text: 'Prev'
+    }
+  },
+
+
   render: function() {
     return (
       React.createElement("div", {className: "step--btn step--btn_prev"}, 
-        React.createElement("button", {onClick: this.props.prevStep}, "Prev")
+        React.createElement("button", {onClick: this.props.prevStep}, this.props.text)
       )
     )
   }
@@ -32787,9 +32793,7 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function() {
 
-          // <div className="step--indicator">2</div>
     return (
-
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
 
@@ -32804,7 +32808,7 @@ module.exports = React.createClass({displayName: "exports",
           ), 
 
           React.createElement(Errors, {trelloStatus: this.props.trelloStatus}), 
-          React.createElement(BtnPrevStep, {prevStep: this.props.prevStep})
+          React.createElement(BtnPrevStep, {prevStep: this.props.prevStep, text: "back to instructions"})
 
         )
       )
@@ -32827,7 +32831,7 @@ module.exports = React.createClass({displayName: "exports",
 
 
   render: function() {
-          // <div className="step--indicator">&#8226;</div>
+    
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--connect"}, 
@@ -32836,15 +32840,14 @@ module.exports = React.createClass({displayName: "exports",
 
           React.createElement("div", {className: "step--body"}, 
             React.createElement("p", null, "Great!", React.createElement("br", null), 
-            "Your resume awaits.", React.createElement("br", null), 
-            "Just click \"next.\"")
+            "Your resume awaits....")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
-          React.createElement(BtnNextStep, {nextStep: this.props.nextStep})
+          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, text: "Go To Resume"})
 
         )
-      )     
+      )
     )
   }
 })
@@ -32962,62 +32965,66 @@ module.exports = React.createClass ({displayName: "exports",
     for (var i = 0; i < data.cards.length; i++) {
       var card = data.cards[i]
 
-      // check for labels, use label name as style name
-      if (card.labels[0]) {
-        cards.push({
-          id: card.idList,
-          text: card.name,
-          style: card.labels[0].name
-        })
-      } else {
-        cards.push({
-          id: card.idList,
-          text: card.name,
-          style: 'subheader'
-        })
-      }
+      // skip cards labeled 'ignore' --- investigate better approach for this
+      if (!card.labels[0] || (card.labels[0].name !== 'ignore') ) {
 
-      // -------------- DESC/LIST ALGORITHM ---- 
-      // check and act for paragraph followed by list
-      if ( card.desc && card.desc.indexOf('\n\n') > -1 && card.desc.indexOf('\n') > -1) {
-        // just paragraphs here
-        cards.push({
-          id: card.idList,
-          text: card.desc.substring(0, card.desc.indexOf('\n\n')),
-          style: 'paragraph'
-        }) 
-        // just lists items here
-        if ( card.desc.indexOf('\n') > -1) {
-          // remove everything after last instance of \n\n
-          var ul = card.desc.substring(card.desc.lastIndexOf("\n\n") + 1)
+        // check for labels, use label name as style name
+        if (card.labels[0]) {
           cards.push({
             id: card.idList,
-            ul: ul.split('\n-'),
+            text: card.name,
+            style: card.labels[0].name
+          })
+        } else {
+          cards.push({
+            id: card.idList,
+            text: card.name,
+            style: 'subheader'
+          })
+        }
+
+        // -------------- DESC/LIST ALGORITHM ---- 
+        // check and act for paragraph followed by list
+        if ( card.desc && card.desc.indexOf('\n\n') > -1 && card.desc.indexOf('\n') > -1) {
+          // just paragraphs here
+          cards.push({
+            id: card.idList,
+            text: card.desc.substring(0, card.desc.indexOf('\n\n')),
+            style: 'paragraph'
+          }) 
+          // just lists items here
+          if ( card.desc.indexOf('\n') > -1) {
+            // remove everything after last instance of \n\n
+            var ul = card.desc.substring(card.desc.lastIndexOf("\n\n") + 1)
+            cards.push({
+              id: card.idList,
+              ul: ul.split('\n-'),
+              style: 'list'
+            }) 
+          }
+        } else if ( card.desc.indexOf('\n-') > -1) {
+        // no paragarph, just list items
+          cards.push({
+            id: card.idList,
+            // split on markdown list delimiter due to no 
+            // line break before first list item. 
+            // This will likely break things if inside of 
+            // a list "-" is used... 
+            // TODO: find a better approach to remove the
+            // first markdown list item
+            // HOW? 
+            // - parse the text as markdown? likely won't 
+            // work due to the pdf library not taking html
+            ul: card.desc.split('-'),
             style: 'list'
           }) 
+        } else if ( card.desc ) {
+          cards.push({
+            id: card.idList,
+            text: card.desc,
+            style: 'paragraph'
+          }) 
         }
-      } else if ( card.desc.indexOf('\n-') > -1) {
-      // no paragarph, just list items
-        cards.push({
-          id: card.idList,
-          // split on markdown list delimiter due to no 
-          // line break before first list item. 
-          // This will likely break things if inside of 
-          // a list "-" is used... 
-          // TODO: find a better approach to remove the
-          // first markdown list item
-          // HOW? 
-          // - parse the text as markdown? likely won't 
-          // work due to the pdf library not taking html
-          ul: card.desc.split('-'),
-          style: 'list'
-        }) 
-      } else if ( card.desc ) {
-        cards.push({
-          id: card.idList,
-          text: card.desc,
-          style: 'paragraph'
-        }) 
       }
     } // end loop
     // console.dir(cards)
@@ -33048,65 +33055,67 @@ module.exports = React.createClass ({displayName: "exports",
 
 
     var docDefinition = {
-      content: content,
-      styles: {
-        // main title
-        name: {
-          fontSize: 22,
-          bold: true,
-          alignment: 'center',
-          marginBottom: 8,
-        }, 
-        // job title -> front-end dev
-        label: {
-          fontSize: 18,
-          alignment: 'center',
-          marginBottom: 10,
+      "content": content,
+      "styles": {
+        "name": {
+          "fontSize": 16,
+          "bold": true,
+          "alignment": "center",
+          "marginBottom": 8
         },
-        location: {
-          fontSize: 14,
-          italic: true,
-          alignment: 'center',
+        "label": {
+          "fontSize": 10,
+          "alignment": "center",
+          "marginBottom": 3
         },
-        sectionHeader: {
-          fontSize: 16,
-          bold: true,
-          marginTop: 7,
-          marginBottom: 7,
+        "location": {
+          "fontSize": 10,
+          "italic": true,
+          "alignment": "center"
         },
-        subheader: {
-          fontSize: 11,
-          bold: true,
-          marginTop: 4,
-          marginBottom: 2,
+        "sectionHeader": {
+          "fontSize": 12,
+          "bold": true,
+          "marginTop": 17,
+          "marginBottom": 7
         },
-        paragraph: {
-          fontSize: 11,
-          marginTop: 1,
-          marginBottom: 2,
+        "subheader": {
+          "fontSize": 10,
+          "bold": true,
+          "marginTop": 5,
+          "marginBottom": 5,
+          "marginLeft": 15
         },
-        list: {
-          marginLeft: 5,
+        "paragraph": {
+          "fontSize": 10,
+          "marginTop": 3,
+          "marginBottom": 3,
+          "marginLeft": 25
         },
+        "list": {
+          "fontSize": 10,
+          "marginLeft": 25,
+          "marginTop": 3,
+          "marginBottom": 3,
+        }
       }
     }
 
     console.log(docDefinition)
     var pdfOpen = function() { pdfMake.createPdf(docDefinition).open() }
 
-          // <div className="step--indicator">3</div>
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--chooseBoard"}, 
 
-          React.createElement("p", {className: "step--message"}, "Here you go :)"), 
+          React.createElement("p", {className: "step--message"}, "Your CV :)"), 
 
           React.createElement("div", {className: "step--body"}, 
             React.createElement("button", {className: "btn--default btn--pdf", onClick: pdfOpen}, "Open Resume PDF")
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
-          React.createElement(BtnNextStep, {nextStep: this.props.nextStep})
+          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, text: "There's more"})
 
         )
       )
@@ -33115,6 +33124,9 @@ module.exports = React.createClass ({displayName: "exports",
 })
 
 
+// TODO: finish integrating support for json export 
+// of a schema to use with Json Resume - https://jsonresume.org/
+// The Below is a (meager) start... 
 
 
 
@@ -33179,8 +33191,23 @@ var BtnPrevStep = require('./BtnPrevStep')
 
 
 module.exports = React.createClass ({displayName: "exports",
+
+  onClickTwitter: function(e) {
+    e.preventDefault()
+    var shareTwitter = "https://twitter.com/share?text=&amp;url=http://cv-lo.com"
+    window.open(shareTwitter, 'twitter-share', 'width=550,height=235')
+    return false
+  },
+
+  onClickFacebook: function(e) {
+    e.preventDefault()
+    var shareFacebook = "https://www.facebook.com/sharer/sharer.php?u=http://cv-lo.com"
+    window.open(shareFacebook, 'facebook-share','width=580,height=296')
+    return false
+  },
+
   render: function() { 
-          // <div className="step--indicator">3</div>
+    
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--chooseBoard"}, 
@@ -33188,18 +33215,19 @@ module.exports = React.createClass ({displayName: "exports",
           React.createElement("p", {className: "step--message"}, "Thanks for using cv-Lo"), 
 
           React.createElement("div", {className: "step--body"}, 
-            React.createElement("p", null, React.createElement("b", null, "SHARE: ", React.createElement("br", null), 
-              React.createElement("a", {className: "link--twitter", href: "#"}, "Twitter"), " / ", React.createElement("a", {className: "link--facebook", href: "#"}, "Facebook")
-            )), 
-            React.createElement("p", null, React.createElement("b", null, "CONNECT: ", React.createElement("br", null), 
+            React.createElement("p", null, "SHARE: ", React.createElement("br", null), 
+              React.createElement("a", {className: "link--twitter", href: "#", onClick: this.onClickTwitter}, "Twitter"), 
+              "/ ", React.createElement("a", {className: "link--facebook", href: "#", onClick: this.onClickFacebook}, "Facebook")
+            ), 
+            React.createElement("p", null, "CONNECT: ", React.createElement("br", null), 
               React.createElement("a", {className: "link--twitter", href: "mailto:isaac@cv-lo.com"}, "Email"), " / ", React.createElement("a", {className: "link--twitter", href: "http://twitter.com/igregson"}, "Twitter")
-            )), 
-            React.createElement("p", null, React.createElement("b", null, "CONTRIBUTE: ", React.createElement("br", null), 
+            ), 
+            React.createElement("p", null, "CONTRIBUTE: ", React.createElement("br", null), 
               React.createElement("a", {className: "link--github", href: "https://github.com/igregson/cv-lo"}, "Github")
-            ))
+            )
           ), 
 
-          React.createElement(BtnPrevStep, {prevStep: this.props.prevStep})
+          React.createElement(BtnPrevStep, {prevStep: this.props.prevStep, text: "Back to CV"})
 
         )
       )
@@ -33208,6 +33236,7 @@ module.exports = React.createClass ({displayName: "exports",
 })
 
 
+// <a class="icon post-footer--share-link icon-twitter" href="https://twitter.com/share?text=&amp;url=/simplet/demo/test-post-10/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 
 },{"./BtnPrevStep":"/home/isaac/Web/cv-lo/src-js/components/BtnPrevStep.js","react":"/home/isaac/Web/cv-lo/node_modules/react/react.js"}],"/home/isaac/Web/cv-lo/src-js/components/StepInstructions.js":[function(require,module,exports){
 'use strict'
@@ -33219,7 +33248,7 @@ var BtnNextStep = require('./BtnNextStep')
 
 module.exports = React.createClass ({displayName: "exports",
   render: function() { 
-          // <div className="step--indicator">1</div>
+
     return (
       React.createElement("div", {className: "primary"}, 
         React.createElement("div", {className: "step step--instructions"}, 
@@ -33243,7 +33272,7 @@ module.exports = React.createClass ({displayName: "exports",
           ), 
 
           React.createElement(BtnPrevStep, {prevStep: this.props.prevStep}), 
-          React.createElement(BtnNextStep, {nextStep: this.props.nextStep})
+          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, text: "Start"})
 
         )
       )
@@ -33310,11 +33339,6 @@ module.exports = React.createClass({displayName: "exports",
               prevStep: this.prevStep, 
               setData: this.setData, 
               data: this.state.data})
-      // case 3: 
-      // return <StepChooseStyle
-      //         nextStep={this.nextStep}
-      //         prevStep={this.prevStep} 
-      //         data={this.state.data} />
       case 4: 
       return React.createElement(StepCv, {
               nextStep: this.nextStep, 
@@ -33349,7 +33373,7 @@ var request = require('superagent')
 module.exports = React.createClass({displayName: "exports",
 
   render: function() {
-    // var loggedInMessage = this.state.loggedin ? "Welcome!" : ""
+
     var loggedInMessage = 'hi!'
     return (
 
@@ -33387,7 +33411,7 @@ module.exports = React.createClass ({displayName: "exports",
             React.createElement("p", null, React.createElement("b", null, "for creating resumes from Trello boards."))
           ), 
 
-          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, nextText: "Start"})
+          React.createElement(BtnNextStep, {nextStep: this.props.nextStep, text: "Let's go!"})
 
         )
       )

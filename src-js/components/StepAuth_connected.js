@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
 
   render: function() {
-          // <div className="step--indicator">&#8226;</div>
+    
     return (
       <div className="primary">
         <div className="step step--connect">
@@ -18,15 +18,14 @@ module.exports = React.createClass({
 
           <div className="step--body">
             <p>Great!<br /> 
-            Your resume awaits.<br />
-            Just click "next."</p>
+            Your resume awaits....</p>
           </div>
 
           <BtnPrevStep prevStep={this.props.prevStep} />
-          <BtnNextStep nextStep={this.props.nextStep} />
+          <BtnNextStep nextStep={this.props.nextStep} text="Go To Resume" />
 
         </div>
-      </div>     
+      </div>
     )
   }
 })

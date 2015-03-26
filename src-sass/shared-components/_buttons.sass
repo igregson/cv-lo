@@ -1,4 +1,4 @@
-button 
+button
   cursor: pointer
   transition: color .2s ease, background .2s ease, border-color .2s ease
   border-color: $c-blue
@@ -6,7 +6,8 @@ button
   color: $c-white
   background: $c-blue
   font-weight: 700
-  border: solid 2px lighten($c-blue, 8)
+  // border: solid 2px lighten($c-blue, 8)
+  border: solid 2px $c-blue
   &:hover, &:active, &:focus 
     outline: none
     border-color: $c-blue
@@ -23,12 +24,14 @@ button
     text-transform: uppercase
     padding: 5px 10px
     width: 100%
+    @include bpMax(600px)
+      padding: 3px 7px
+      // font-size: .8em
 .step--btn_prev
   left: 0
   button 
     border-radius: 0 $radius $radius 0
     border-left: none
-    // border-right: solid 2px lighten($c-blue, 8)
     &:hover
       border-left: none
 .step--btn_next
@@ -36,7 +39,6 @@ button
   button 
     border-radius: $radius 0 0 $radius
     border-right: none
-    // border-left: solid 2px lighten($c-blue, 8)
     &:hover, &:active, &:focus
       border-right: none
 
@@ -50,3 +52,7 @@ button
   &:hover 
     border-color: rgb(13, 152, 188) 
     color: rgb(13, 152, 188) 
+  @include bpMax(600px)
+    font-size: .8em
+    padding: 8px 15px
+    margin-top: 25px

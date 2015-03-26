@@ -17,24 +17,32 @@ Board organization is opinionated only as much as necessary:
 
 > Tip: Your board only has to be public for uploading it to cv-Lo, meaning it's super easy to toggle between private/public if you don't want your trello resume board to be public. 
 
-
 #### On the cv-Lo side
 
 Just click, paste, view, download, and all the rest that you'd expect with a public-facing project.
 
 ### Aren't there other ways to do this?
 
-Yes, of course. And cv-Lo isn't necessarily the best. Especially with its current limitations (like only being able to output a not-easily-editable PDF and not having more than one default style).
+Yes, of course. And cv-Lo isn't necessarily the best. Especially with its current limitations (only outputing a PDF, lack of templates, etc).
 
-Perhaps the easiest would be to simply export json from Trello. But a blob of json isn't, of course, a finished resume. If you have a premium plan you can export a CSV file, but that's also not a finished resume. Wouldn't it be cool to be able to export some type of word-based document from Trello (just a thought)?
+Just after nearing the end of initially creating cv-Lo I learned about an intriguing and incredibly promising looking project called [JSON Resume](https://jsonresume.org/). There's currently don't have a Trello import but it'd be cool to adapt cv-Lo to export JSON Resume friendly JSON to then use with it. This is on the todo list. 
 
-There's Zapier. I created a zap to sync my Trello resume board with my Google drive. And it works. But I still wanted to create cv-Lo :) *PS: if you don't have a Zapier account and want one we'll both benefit if you [signup with this link](http://zpr.io/z45i), just sayin'.*
+One could simply export json from Trello. But a blob of json isn't, of course, a finished resume. If you have a premium plan you can export a CSV file, but that's also not a finished resume. Wouldn't it be cool to be able to export some type of word-based document from Trello (just a thought)?
+
+There's also Zapier. I created a zap to sync my Trello resume board with my Google drive. It works. But I still wanted to create cv-Lo :) *PS: if you don't have a Zapier account and want one we'll both benefit if you [signup with this link](http://zpr.io/z45i), just sayin'.*
 
 And there are other open source projects. At least I found one other. It's written in Python and has a pretty sweet name, [Trelloscribe](https://github.com/mcktrtl/trelloscribe).
 
+### Primarily an Exercise / Proof-of-concept
+
+While cv-Lo is public facing and fully functioning, it wasn't born out of any master plan or anything. On top of wanting to "scratch my own itch" I also wanted a simple project to start working with React.js. 
+
 ### TODO: 
+
+- Add state (urls for each step).
+- Add animations.
+- Integrate (somehow) with [JSON Resume](https://jsonresume.org/). At the least with a "view/download JSON Resume friendly json" feature.
+- Consider adding client-side Trello auth to allow users to upload private boards. SSL would then be a good thing.
 - Create an "upload to Google docs" feature, especially valuable since the returned "product" would be easily editable (in contrast to PDFs).
 - Better architect the data flow/store (rather than passing data through props, integrate with a proper store). Weigh the benefits of this with the time needed/scope of project.
-- Consider adding client-side Trello auth to allow users to upload private boards. If doing this, the site would need to move to SSL.
-- Add state (urls for each step).
-- Figure out better approach to sharing instructions... noone wants to read lots of bullets when trying to use a simple tool.
+- Themes, styles, features. 

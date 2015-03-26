@@ -79,8 +79,8 @@ p, ul, ol
   // font-weight: 700
   font-size: $font-size--p
   line-height: $line-height--p
-  @include bpMax(650px)
-    font-size: 15px
+  @include bpMax(600px)
+    font-size: 14px
 
 .container p 
   @include bpMax(650px)
@@ -94,9 +94,10 @@ a
   cursor: pointer
   text-decoration: none
   border-bottom: 2px solid lighten($c-link, 63)
-  transition: all .2s ease
+  transition: all .2s ease, font-weight .2s ease
   &:hover
     border-bottom: solid 2px $c-blue
+    font-weight: 700
 .btn a
   border: none 
   &:hover 

@@ -44,9 +44,6 @@ body
   width: 100%
 
 .contain 
-  position: absolute 
-  top: 50%
-  transform: translateY(-50%)
   margin: 0 auto
   left: 0
   right: 0
@@ -56,4 +53,9 @@ body
     margin-top: $space--owl
     @include bpMax(650px)
       margin-top: 1em
-
+  @include bp(600px)
+    position: absolute 
+    top: 50%
+    transform: translateY(-50%)
+  @include bpMax(600px)
+    padding: 1rem

@@ -16,7 +16,7 @@ module.exports = React.createClass ({
             <p><b>for creating resumes from Trello boards.</b></p>
           </div>
 
-          <BtnNextStep nextStep={this.props.nextStep} nextText="Start" />
+          <BtnNextStep nextStep={this.props.nextStep} text="Let's go!" />
 
         </div>
       </div>

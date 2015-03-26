@@ -7,7 +7,7 @@ var request = require('superagent')
 module.exports = React.createClass({
 
   render: function() {
-    // var loggedInMessage = this.state.loggedin ? "Welcome!" : ""
+
     var loggedInMessage = 'hi!'
     return (
 
