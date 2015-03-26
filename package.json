@@ -6,7 +6,7 @@
   "scripts": {
     "css:build": "scss-cli --output-style compressed src-sass/main.scss -o dist/",
     "css:watch": "onchange 'src-sass/' -- npm run css:build",
-    "js:build": "browserify -t reactify src-js/index.js -o dist/bundle.js",
+    "js:build": "browserify -t reactify src-js/index.js -d -p [minifyify --map bundle.map.json --output dist/bundle.map.json] > dist/bundle.js",
     "js:watch": "watchify -t reactify src-js/index.js -o dist/bundle.js",
     "html:build": "html-minifier --collapse-whitespace --keep-closing-slash --remove-comments index.html -o dist/index.html",
     "html:watch": "onchange  '!dist/**/*' '*.html' -- npm run html:build",
@@ -14,7 +14,10 @@
     "build": "npm run css:build && npm run js:build && npm run html:build",
     "prewatch": "npm run build",
     "watch": "parallelshell 'npm run css:watch' 'npm run js:watch' 'npm run html:watch' 'npm run browserSync'",
-    "start": "npm run watch"
+    "start": "npm run watch",
+    "deploy": "rsync --delete -r dist/ isaac@isaacgregson.com:/var/www/cv-lo/cv-lo.com/",
+    "predeploy": "npm run build",
+    "postdeploy": "echo 'cv-Lo shipped!'"
   },
   "author": "Isaac Gregson",
   "license": "MIT",
@@ -28,6 +31,7 @@
     "immutable": "^3.6.4",
     "jquery": "^2.1.3",
     "lodash": "^3.5.0",
+    "minifyify": "^6.3.2",
     "morearty": "^0.7.11",
     "onchange": "^1.0.0",
     "parallelshell": "^1.1.1",

@@ -48,7 +48,7 @@ module.exports = React.createClass ({
               / <a className="link--facebook" href="#" onClick={this.onClickFacebook}>Facebook</a>
             </p>
             <p>CONNECT: <br />
-              <a className="link--twitter" href="mailto:isaac@cv-lo.com">Email</a> / <a className="link--twitter" href="http://twitter.com/igregson">Twitter</a>
+              <a className="link--twitter" href="mailto:isaac@cv-lo.com">Email</a> / <a className="link--twitter" href="http://twitter.com/isaacgregson">Twitter</a>
             </p>
             <p>CONTRIBUTE: <br />
               <a className="link--github" href="https://github.com/igregson/cv-lo">Github</a>
