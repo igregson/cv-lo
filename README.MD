@@ -40,7 +40,7 @@ While cv-Lo is public facing and fully functioning, I built this mostly for myse
 *Use it or otherwise generally find it helpful?* Awesome.  
 *Want to contribute and make it better?* Sweet.  
 
-### TODO: 
+## TODO: 
 
 - Add state (urls for each step).
 - Add animations.
