@@ -26,7 +26,7 @@ module.exports = React.createClass ({
             </p>
             <p>TLDR:<br />
               Learn by example...<br />
-              <a href="https://trello.com/b/dldEmt0w/resume-example-for-cv-lo" target="blank">View/Use our sample resume board</a>
+              <a href="https://trello.com/b/bM6IIiKT/resume-example-for-cv-lo" target="blank">View/Use our sample resume board</a>
             </p>
           </div>
 
