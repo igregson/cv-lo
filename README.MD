@@ -8,9 +8,9 @@ Harness React for the views and [pdfmake](https://github.com/bpampuch/pdfmake) f
 
 Visit [the cv-Lo website](http://cv-lo.com) and simply follow the instructions.
 
-## Local Usage
+## To hack/enhance/experiment/further-develop-and-contribute
 
-Getting a copy of cv-Lo running locally isn't hard. 
+Getting a copy of cv-Lo running locally is simple: 
 
 1. `git clone https://github.com/igregson/cv-lo.git`
 2. `npm install`
