@@ -1,8 +1,12 @@
 # cv-Lo
 
-A client-side app for turning a Trello board into a resume. 
+A client-side app for creating resumes from Trello boards. 
 
-Uses React for the views. [pdfmake](https://github.com/bpampuch/pdfmake) for generating the PDF clientside.
+Harness React for the views and [pdfmake](https://github.com/bpampuch/pdfmake) for clientside PDF creation.
+
+## To Use 
+
+Visit [the cv-Lo website](http://cv-lo.com) and simply follow the instructions.
 
 ## Local Usage
 
