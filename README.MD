@@ -17,37 +17,17 @@ Getting a copy of cv-Lo running locally isn't hard.
 3. `npm start`
 4. visit `localhost:3000`
 
-### `Package.json` As a Build Tool
+### NPM's`Package.json` As a Build Tool
 
 cv-Lo makes use of NPM as a build tool. Cheack out `package.json` for an understanding.
 
-`#### npm start`
+#### `npm start` or `npm run watch`
 
-Starts the development environment with a Browsersync server - an alias for `npm run watch`. 
+Builds and starts a watch environment via a Browsersync server. Scripts are bundled via Broswerify and styles are written in `Sass`.
 
+#### `npm run build`
 
-`#### npm run build`
-
-Builds everything. Simple as that.
-
-## Client-side Usage
-
-### On the Trello side
-
-Create a board, make it public. It has to be public for cv-Lo to upload it (see todo item for thoughts on client-side auth). 
-
-Board organization is opinionated only as much as necessary: 
-
-- name your board whatever you'd like. 
-- each list will become a "section" of your resume. 
-- each list item ("cards" in Trello talk) will be an entry for that section.
-- add descriptions to list items if you'd like. These can be have bullets and stuff if you'd like (Trello supports Markdown).
-
-> Tip: Your board only has to be public for uploading it to cv-Lo, meaning it's super easy to toggle between private/public if you don't want your trello resume board to be public. 
-
-### On the cv-Lo side
-
-Just click, paste, view, download, and all the rest that you'd expect with a public-facing project.
+Builds everything. To be run beore deploying.
 
 ## Aren't there other ways to do this?
 
