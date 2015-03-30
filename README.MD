@@ -33,7 +33,7 @@ Builds everything. To be run beore deploying.
 
 Yes, of course. And cv-Lo isn't necessarily the best. Especially with its current limitations (only outputing a PDF, lack of templates, etc).
 
-Just after nearing the end of initially creating cv-Lo I learned about an intriguing and incredibly promising looking project called [JSON Resume](https://jsonresume.org/). There's currently don't have a Trello import but it'd be cool to adapt cv-Lo to export JSON Resume friendly JSON to then use with it. This is on the todo list. 
+Just after nearing the end of initially creating cv-Lo I learned about an intriguing and incredibly promising looking project called JSON Resume [[site]](https://jsonresume.org/)[[github]](https://github.com/jsonresume). There's currently don't have a Trello import but it'd be cool to adapt cv-Lo to export JSON Resume friendly JSON to then use with it. This is on the todo list. 
 
 One could simply export json from Trello. But a blob of json isn't, of course, a finished resume. If you have a premium plan you can export a CSV file, but that's also not a finished resume. Wouldn't it be cool to be able to export some type of word-based document from Trello (just a thought)?
 
