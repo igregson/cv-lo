@@ -1,4 +1,4 @@
-![](http://cv-lo.com/images/home.svg)
+<img src="http://cv-lo.com/images/home.svg">
 
 # cv-Lo
 
