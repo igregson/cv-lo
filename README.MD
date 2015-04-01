@@ -1,55 +1,39 @@
 # cv-Lo
 
-A client-side app for turning a Trello board into a resume. 
+A client-side app for creating resumes from Trello boards. 
 
-Uses React for the views. [pdfmake](https://github.com/bpampuch/pdfmake) for generating the PDF clientside.
+Harness React for the views and [pdfmake](https://github.com/bpampuch/pdfmake) for clientside PDF creation.
 
-## Local Usage
+## To Use 
 
-Getting a copy of cv-Lo running locally isn't hard. 
+Visit [the cv-Lo website](http://cv-lo.com) and simply follow the instructions.
+
+## To hack/enhance/experiment/further-develop-and-contribute
+
+Getting a copy of cv-Lo running locally is simple: 
 
 1. `git clone https://github.com/igregson/cv-lo.git`
 2. `npm install`
 3. `npm start`
 4. visit `localhost:3000`
 
-### `Package.json` As a Build Tool
+### NPM's`Package.json` As a Build Tool
 
 cv-Lo makes use of NPM as a build tool. Cheack out `package.json` for an understanding.
 
-`#### npm start`
+#### `npm start` or `npm run watch`
 
-Starts the development environment with a Browsersync server - an alias for `npm run watch`. 
+Builds and starts a watch environment via a Browsersync server. Scripts are bundled via Broswerify and styles are written in `Sass`.
 
+#### `npm run build`
 
-`#### npm run build`
-
-Builds everything. Simple as that.
-
-## Client-side Usage
-
-### On the Trello side
-
-Create a board, make it public. It has to be public for cv-Lo to upload it (see todo item for thoughts on client-side auth). 
-
-Board organization is opinionated only as much as necessary: 
-
-- name your board whatever you'd like. 
-- each list will become a "section" of your resume. 
-- each list item ("cards" in Trello talk) will be an entry for that section.
-- add descriptions to list items if you'd like. These can be have bullets and stuff if you'd like (Trello supports Markdown).
-
-> Tip: Your board only has to be public for uploading it to cv-Lo, meaning it's super easy to toggle between private/public if you don't want your trello resume board to be public. 
-
-### On the cv-Lo side
-
-Just click, paste, view, download, and all the rest that you'd expect with a public-facing project.
+Builds everything. To be run beore deploying.
 
 ## Aren't there other ways to do this?
 
 Yes, of course. And cv-Lo isn't necessarily the best. Especially with its current limitations (only outputing a PDF, lack of templates, etc).
 
-Just after nearing the end of initially creating cv-Lo I learned about an intriguing and incredibly promising looking project called [JSON Resume](https://jsonresume.org/). There's currently don't have a Trello import but it'd be cool to adapt cv-Lo to export JSON Resume friendly JSON to then use with it. This is on the todo list. 
+Just after nearing the end of initially creating cv-Lo I learned about an intriguing and incredibly promising looking project called JSON Resume [[site]](https://jsonresume.org/)[[github]](https://github.com/jsonresume). There's currently don't have a Trello import but it'd be cool to adapt cv-Lo to export JSON Resume friendly JSON to then use with it. This is on the todo list. 
 
 One could simply export json from Trello. But a blob of json isn't, of course, a finished resume. If you have a premium plan you can export a CSV file, but that's also not a finished resume. Wouldn't it be cool to be able to export some type of word-based document from Trello (just a thought)?
 
