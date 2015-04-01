@@ -56,10 +56,10 @@ While cv-Lo is public facing and fully functioning, I built this mostly for myse
 
 ## TODO: 
 
-- Add state (urls for each step).
-- Add animations.
-- Integrate (somehow) with [JSON Resume](https://jsonresume.org/). At the least with a "view/download JSON Resume friendly json" feature.
-- Consider adding client-side Trello auth to allow users to upload private boards. SSL would then be a good thing.
-- Create an "upload to Google docs" feature, especially valuable since the returned "product" would be easily editable (in contrast to PDFs).
-- Better architect the data flow/store (rather than passing data through props, integrate with a proper store). Weigh the benefits of this with the time needed/scope of project.
-- Themes, styles, features. 
+- [ ] Add state (urls for each step).
+- [ ] Add animations.
+- [ ] Integrate (somehow) with [JSON Resume](https://jsonresume.org/). At the least with a "view/download JSON Resume friendly json" feature.
+- [ ] Consider adding client-side Trello auth to allow users to upload private boards. SSL would then be a good thing.
+- [ ] Create an "upload to Google docs" feature, especially valuable since the returned "product" would be easily editable (in contrast to PDFs).
+- [ ] Better architect the data flow/store (rather than passing data through props, integrate with a proper store). Weigh the benefits of this with the time needed/scope of project.
+- [ ] Themes, styles, features. 
