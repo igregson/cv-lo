@@ -9,7 +9,8 @@ module.exports = React.createClass ({
 
     var homeImgStyle = {
       maxWidth: '335px',
-      marginBotton: '5px',
+      marginBottom: '22px',
+      marginTop: '54px',
       width: `100%`
     }
 

@@ -22,7 +22,8 @@ $c-tan:     #DFDED9
 $c-green:   #91B382
 $c-orange:  #f5a93a
 $c-red:     #F0342B
-$c-blue:    #063E4D
+// $c-blue: #00586F
+$c-blue: #195362
 // c-specics
 $c-bg:      $c-blue 
 $c-box-bg:  $c-white
@@ -44,7 +45,10 @@ body
   width: 100%
 
 .contain 
-  margin: 4rem auto 4rem
+  margin: 2rem auto 4rem
+  @include bpMax(600px)
+    margin-top: 0
+    padding-top: 1rem
   left: 0
   right: 0
   padding: 2rem
@@ -53,9 +57,9 @@ body
     margin-top: $space--owl
     @include bpMax(650px)
       margin-top: 1em
-  @include bp(600px)
+  // @include bp(600px)
     position: absolute 
     top: 50%
     transform: translateY(-50%)
-  @include bpMax(600px)
+  // @include bpMax(600px)
     padding: 1rem

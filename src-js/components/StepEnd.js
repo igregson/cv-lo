@@ -38,7 +38,7 @@ module.exports = React.createClass ({
     
     return (
       <div className="primary">
-        <div className="step step--chooseBoard">
+        <div className="step step--end">
 
           <p className="step--message">Thanks for using cv-Lo</p>
 

@@ -36,6 +36,9 @@
   margin: 0 auto
   left: 0
   right: 0
+  p 
+    font-size: 1.2em
+    color: $c-blue
   @include bp(600px)
     position: absolute 
     top: 55%
@@ -49,12 +52,17 @@
     text-align: left
   p 
     margin-left: 2rem
+    font-size: 1em
   @include bpMax(600px)
     p 
       margin: 0
     ul 
       margin-left: 5px
 
+
+.step--end
+  a 
+    font-weight: 600
 .link--facebook
   &:hover 
     border-color: #3b5998
