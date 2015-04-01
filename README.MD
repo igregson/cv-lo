@@ -1,3 +1,5 @@
+<img src="http://cv-lo.com/images/home.svg" style="display: inline-block; margin: 0 auto">
+
 # cv-Lo
 
 A client-side app for creating resumes from Trello boards. 
