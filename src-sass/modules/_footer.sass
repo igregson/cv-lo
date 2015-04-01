@@ -1,9 +1,12 @@
 .site--footer
   position: fixed
   bottom: 1rem
+  z-index: -1
   left: 1rem
-  color: lighten($c-blue, 7)
+  color: #637E85
   transition: color .2s ease
+  ul 
+    font-size: .8em
   &:hover
     color: lighten($c-blue, 25)
   @include bpMax(600px)

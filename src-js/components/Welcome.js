@@ -6,6 +6,13 @@ var BtnNextStep = require('./BtnNextStep')
 
 module.exports = React.createClass ({
   render: function() {
+
+    var homeImgStyle = {
+      maxWidth: '335px',
+      marginBotton: '5px',
+      width: `100%`
+    }
+
     return (
       <div className="primary">
         <div className="step step--welcome">
@@ -13,6 +20,7 @@ module.exports = React.createClass ({
           <p className="step--message">A Free &amp; Simple Tool</p>
 
           <div className="step--body">
+            <img style={homeImgStyle} src="/images/home.svg" />
             <p><b>for creating resumes from Trello boards.</b></p>
           </div>
 
