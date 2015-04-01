@@ -10,9 +10,6 @@ module.exports = React.createClass({
 
   render: function() {
     
-    var imgCheckStyle = {
-      
-    }
 
     return (
       <div className="primary">
@@ -21,7 +18,7 @@ module.exports = React.createClass({
           <p className="step--message">Connected!</p>
 
           <div className="step--body">
-            <img style={imgCheckStyle} src="/images/check.svg" />
+            <img src="/images/check.svg" />
             <p><b>Great!<br /> 
             Your resume awaits....</b></p>
           </div>

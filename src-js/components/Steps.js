@@ -31,7 +31,6 @@ module.exports = React.createClass({
   },
 
   setData: function(data) {
-    console.log(data)
     this.setState({
       data : data
     })
