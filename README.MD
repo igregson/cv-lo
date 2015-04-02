@@ -2,7 +2,7 @@
   <img width="80%" src="http://cv-lo.com/images/home.svg">
 </p>
 
-
+## Overview 
 
 A client-side app for creating resumes from Trello boards. 
 
