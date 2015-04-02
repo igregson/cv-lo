@@ -1,4 +1,6 @@
-<img src="http://cv-lo.com/images/home.svg">
+<p align="center">
+  <img width="80%" src="http://cv-lo.com/images/home.svg">
+</p>
 
 # cv-Lo
 
