@@ -2,9 +2,11 @@
   <img width="80%" src="http://cv-lo.com/images/home.svg">
 </p>
 
+
+
 A client-side app for creating resumes from Trello boards. 
 
-Harness React for the views and [pdfmake](https://github.com/bpampuch/pdfmake) for clientside PDF creation.
+Harnesses [React](https://github.com/facebook/react) for the views and [pdfmake](https://github.com/bpampuch/pdfmake) for clientside PDF creation.
 
 ## To Use 
 
