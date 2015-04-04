@@ -15,7 +15,7 @@
     "prewatch": "npm run build",
     "watch": "parallelshell 'npm run css:watch' 'npm run js:watch' 'npm run html:watch' 'npm run browserSync'",
     "start": "npm run watch",
-    "deploy": "rsync --delete -r dist/ igregson@igregson.webfactional.com:/home/igregson/webapps/cvlo/",
+    "deploy": "rsync --delete -r dist/ root@isaacgregson.com:/var/www/cv-lo/cv-lo.com/",
     "predeploy": "npm run build",
     "postdeploy": "echo '[GOOD-NEWS] cv-Lo shipped!'"
   },
