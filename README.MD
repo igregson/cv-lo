@@ -21,7 +21,7 @@ Getting a copy of cv-Lo running locally is simple:
 3. `npm start`
 4. visit `localhost:3000`
 
-### NPM's`Package.json` As a Build Tool
+### NPM's `Package.json` As a Build Tool
 
 cv-Lo makes use of NPM as a build tool. Cheack out `package.json` for an understanding.
 
